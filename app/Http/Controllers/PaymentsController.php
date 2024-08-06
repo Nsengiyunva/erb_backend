@@ -50,7 +50,7 @@ class PaymentsController extends Controller
         $payment = Payment::where("reference",$reference)->first();
         $payment->amount = $amount;
 
-        Log::info( $request->$status );
+        Log::info( $status );
 
         switch( strtolower( $status ) ){
             case "completed":
