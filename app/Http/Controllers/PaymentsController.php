@@ -50,13 +50,13 @@ class PaymentsController extends Controller
         $payment = Payment::where("reference",$reference)->first();
         $payment->amount = $amount;
 
-        Log::info( $request->$status );
-
         switch( strtolower( $status ) ){
             case "completed":
                 $payment->status = config("payments.STATES.COMPLETED");
+                break;
             case "expired":
                 $payment->status = config("payments.STATES.EXPIRED");
+                break;
             default:
                 $payment->status = config("payments.STATES.FAILED");
                 $payment->notes = $notes;
