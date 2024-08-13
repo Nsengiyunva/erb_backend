@@ -35,7 +35,8 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::post( "erb-success-payment", [EngineersController::class, 'paymentSuccess'] );
   Route::get( "erb-getSponsors", [EngineersController::class, 'getSponsorsByUser'] );
   Route::post( "erb_updateSponsor", [EngineersController::class, 'updateSponsor'] );
-  Route::get( "erb_engineers/{category}", [EngineersController::class, 'fetchErbEngineers'] );
+  Route::get( "erb_engineers/{category}", [EngineersController::class,'fetchErbEngineers'] ); 
+  Route::get( "erb_registered", [EngineersController::class, 'fetchEngineers'] );
 
 } );
 

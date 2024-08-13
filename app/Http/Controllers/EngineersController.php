@@ -179,6 +179,10 @@ class EngineersController extends Controller
         ]);
     }
 
+    public function fetchRegister( Request $request ) {
+        
+    }
+
     public function fetchErbEngineers( $category ) {
         $sql = "SELECT DISTINCT * FROM erb_baseline WHERE type LIKE '%".$category."%' ";
         $results = DB::select( $sql );
@@ -281,6 +285,15 @@ class EngineersController extends Controller
             "success" => true,
             "message" => "Sponsor has been updated successfully."
         ]);
+    }
+
+
+    public function fetchEngineers( Request $request ) {
+        $users = ELicenceUser::all();
+        return response()->json( [
+            "success" => true,
+            "users" => $users
+        ] );
     }
 
     public function storeUser(Request $request)
