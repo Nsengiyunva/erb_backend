@@ -160,17 +160,17 @@ class EngineersController extends Controller
         $payment->phone_no = $request->input("payment_phone_no");
 
         //0701234110
-        $this->erbPay->pay( [
-            "phone_no" => $request->input("payment_phone_no" ),
-            "source_system" => "FLEXIPAY",
-            "amount" => $request->input( "payment_amount" ),
-            "narrative" => "Application fees from the client",
-            "sent_from" => "Underhill Kawuma"
-        ] );
+        #$this->erbPay->pay( [
+        #    "phone_no" => $request->input("payment_phone_no" ),
+        #    "source_system" => "FLEXIPAY",
+        #    "amount" => $request->input( "payment_amount" ),
+        #    "narrative" => "Application fees from the client",
+        #    "sent_from" => "Underhill Kawuma"
+        #] );
         
-        $payment->elicense_id = $elicence->id;
-        $payment->created_by = $request->applicant_id;
-        $payment->save();
+        #$payment->elicense_id = $elicence->id;
+        #$payment->created_by = $request->applicant_id;
+        #$payment->save();
 
         return response()->json([
             "success" => true,
