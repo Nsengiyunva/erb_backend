@@ -430,4 +430,15 @@ class EngineersController extends Controller
 
         ] );
     }
+
+    public function fetchRegistered() {
+        $sql = "SELECT DISTINCT * FROM elicence_user";
+        //WHERE type LIKE '%".$category."%' 
+        $users = DB::select( $sql );
+
+        return response()->json( [
+            "success" => true,
+            "results" => $users
+        ] );
+    }
 }

@@ -37,6 +37,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::post( "erb_updateSponsor", [EngineersController::class, 'updateSponsor'] );
   Route::get( "erb_engineers/{category}", [EngineersController::class,'fetchErbEngineers'] ); 
   Route::get( "erb_registered", [EngineersController::class, 'fetchEngineers'] );
+  Route::gwt( "erb_users", [EngineersController::class, 'fetchRegistered' ]);
 
 } );
 
