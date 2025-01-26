@@ -63,6 +63,7 @@ class EngineersController extends Controller
         $elicence->email_address = $request->email_address;
         $elicence->birth_place = $request->birth_place;
         $elicence->application_type = $request->application_type;
+        $elicence->user_picture = $request->user_picture;
 
         $elicence->created_at = now();
         $elicence->updated_at = now();
@@ -92,6 +93,9 @@ class EngineersController extends Controller
                     'registered' => $child['registered'],
                     'registration_number' => $child['registration_number'],
                     'discipline' => $child['discipline'],
+                    'progress' => $child['progress'],
+                    'email_address' => $child['email_address'],
+                    'picture' => $child['picture'],
                     'user_id' => $child['user_id'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
@@ -212,9 +216,7 @@ class EngineersController extends Controller
         }
         //approver
         $approver->licence_application_id = $request->id;
-        // $approver->actor = $request->actor;
         $approver->actor_id = $request->actor_id;
-        // $approver->actor_email = $request->actor_email;
         $approver->actor_role = $request->actor_role;
         $approver->comments = $request->comments;
         $approver->action = $request->action;
