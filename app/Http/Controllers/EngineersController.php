@@ -437,8 +437,12 @@ class EngineersController extends Controller
     }
 
     public function fetchRegistered( Request $request ) {
-        return response()->json( [
+        $sql = "select distinct * from elicence_user";
+        $users = DB::select($sql);
 
+        return response()->json( [
+            "success" => true,
+            "users" => $users
         ] );
     }
 }
