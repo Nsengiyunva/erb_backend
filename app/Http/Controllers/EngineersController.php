@@ -63,7 +63,10 @@ class EngineersController extends Controller
         $elicence->email_address = $request->email_address;
         $elicence->birth_place = $request->birth_place;
         $elicence->application_type = $request->application_type;
+
         $elicence->user_picture = $request->user_picture;
+        $elicence->document_type = $request->document_type;
+        $elicence->document_id = $request->document_id;
 
         $elicence->created_at = now();
         $elicence->updated_at = now();
@@ -428,6 +431,12 @@ class EngineersController extends Controller
     }
 
     public function paymentSuccess( Request $request ) {
+        return response()->json( [
+
+        ] );
+    }
+
+    public function fetchRegistered( Request $request ) {
         return response()->json( [
 
         ] );
