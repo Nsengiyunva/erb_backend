@@ -296,7 +296,7 @@ class EngineersController extends Controller
 
 
     public function fetchEngineers( Request $request ) {
-        $sql = "SELECT DISTINCT id, name, email, telephone, licence_no, category FROM elicence_user";
+        $sql = "SELECT DISTINCT id, name, email, telephone, licence_no, category, created_at FROM elicence_user";
         $results = DB::select( $sql );
 
         return response()->json( [
