@@ -279,14 +279,27 @@ class EngineersController extends Controller
 
     public function updateSponsor(Request $request){
         $sponsor = ELicenceSponsor::where("id", $request->id)->first();
+        $application = ELicence::where("id", $request->parentID)->first();
 
         // $approver = new EApprover;
+        if( $request->percentage ) {
+            $application->sponsor_score = $request->percentage;
+        }
 
         if ($request->status) {
             $sponsor->status = $request->status;
         }
+
+        if ($request->progress) {
+            $sponsor->progress = $request->progress;
+        }
+
+        if ($request->comment) {
+            $sponsor->comment = $request->comment;
+        }
         
         $sponsor->save();
+        $application->save();
 
         return response()->json([
             "success" => true,
