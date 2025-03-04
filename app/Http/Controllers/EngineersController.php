@@ -283,9 +283,8 @@ class EngineersController extends Controller
         $sponsor = ELicenceSponsor::where("id", $request->id)->first();
         $application = ELicence::where("id", $request->parentID)->first();
 
-        // $approver = new EApprover;
-        if( $request->percentage ) {
-            $application->sponsor_score = $request->percentage;
+        if( $request->sponsor_score ) {
+            $application->sponsor_score = $request->sponsor_score;
         }
 
         if ($request->status) {
