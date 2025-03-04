@@ -41,6 +41,7 @@ class EngineersController extends Controller
 
         $elicence->type = $request->type;
         $elicence->profession = $request->profession;
+        $elicence->sponsor_score = $request->sponsor_score;
         $elicence->category = $request->category;
 
         $elicence->firstname = $request->firstname;
