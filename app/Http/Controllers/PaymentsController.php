@@ -38,7 +38,8 @@ class PaymentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = Payment::find($id);
+        return $response;
     }
 
     public function callback(Request $request){

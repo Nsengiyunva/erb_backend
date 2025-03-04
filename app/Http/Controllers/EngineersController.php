@@ -29,7 +29,7 @@ class EngineersController extends Controller
     {
         $this->erbPay = $erbPay;
     }
-    
+
     public function storeLicence(Request $request)
     {
 
@@ -195,6 +195,7 @@ class EngineersController extends Controller
         return response()->json([
             "success" => true,
             "id" => $elicence->id,
+            "payment_id" => $payment->id,
             "message" => "Licence Application has been added successfully."
         ]);
     }

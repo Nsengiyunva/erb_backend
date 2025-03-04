@@ -38,7 +38,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::get( "erb_engineers/{category}", [EngineersController::class,'fetchErbEngineers'] ); 
   Route::get( "erb_registered", [EngineersController::class, 'fetchEngineers'] );
 } );
-
+Route::get("/payments/{id}",[PaymentsController::class, 'show'] )->name("payments.show");
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");
 
 
