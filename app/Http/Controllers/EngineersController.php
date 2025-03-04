@@ -40,6 +40,7 @@ class EngineersController extends Controller
         $education = new ELicenceEducation;
 
         $elicence->type = $request->type;
+        $elicence->profession = $request->profession;
         $elicence->category = $request->category;
 
         $elicence->firstname = $request->firstname;
