@@ -18,11 +18,13 @@ use App\Models\ELicencePracticals;
 use App\Models\Payment;
 use App\Services\ErbPay;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class EngineersController extends Controller
 {
 
     protected $erbPay;
+
     public function __construct(ErbPay $erbPay)
     {
         $this->erbPay = $erbPay;
@@ -169,17 +171,25 @@ class EngineersController extends Controller
         $payment->phone_no = $request->input("payment_phone_no");
 
         //0701234110
-        #$this->erbPay->pay( [
-        #    "phone_no" => $request->input("payment_phone_no" ),
-        #    "source_system" => "FLEXIPAY",
-        #    "amount" => $request->input( "payment_amount" ),
-        #    "narrative" => "Application fees from the client",
-        #    "sent_from" => "Underhill Kawuma"
-        #] );
+        $this->erbPay->pay( [
+            "phone_no" => "0773917523",
+            "source_system" => "MTN",
+            "amount" => 500,
+            "narrative" => "ERB Payment Status",
+            "sent_from" => "Isaac"
+        ] );
+
+        // $this->erbPay->pay( [
+        //     "phone_no":"0773917523",
+        //     "amount": 500,
+        //     "narrative":"ERB Test Payment",
+        //     "sent_from":"Isaac King",
+        //     "source_system":"MTN"
+        // ] );
         
-        #$payment->elicense_id = $elicence->id;
-        #$payment->created_by = $request->applicant_id;
-        #$payment->save();
+        $payment->elicense_id = $elicence->id;
+        $payment->created_by = $request->applicant_id;
+        $payment->save();
 
         return response()->json([
             "success" => true,
