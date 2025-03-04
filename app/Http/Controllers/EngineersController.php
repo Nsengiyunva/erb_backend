@@ -40,6 +40,7 @@ class EngineersController extends Controller
         $education = new ELicenceEducation;
 
         $elicence->type = $request->type;
+        $elicence->profession = $request->profession;
         $elicence->category = $request->category;
 
         $elicence->firstname = $request->firstname;
@@ -179,7 +180,7 @@ class EngineersController extends Controller
         return response()->json([
             "success" => true,
             "id" => $elicence->id,
-            "message" => "Licence Application has been added successfully."
+            "message" => "Licence Application has been created successfully."
         ]);
     }
 
@@ -274,8 +275,6 @@ class EngineersController extends Controller
 
     public function updateSponsor(Request $request){
         $sponsor = ELicenceSponsor::where("id", $request->id)->first();
-
-        // $approver = new EApprover;
 
         if ($request->status) {
             $sponsor->status = $request->status;
