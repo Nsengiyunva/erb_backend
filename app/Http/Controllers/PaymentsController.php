@@ -42,6 +42,11 @@ class PaymentsController extends Controller
         return $response;
     }
 
+    public function fetchAllPayments() {
+        $results = Payment::all();
+        return $results;
+    }
+
     public function callback(Request $request){
         $reference = $request->json( "reference" );
         $amount = $request->json( "amount" );
