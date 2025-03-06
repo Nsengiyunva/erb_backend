@@ -19,6 +19,7 @@ use App\Models\Payment;
 use App\Services\ErbPay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderShipped;
 
 class EngineersController extends Controller
