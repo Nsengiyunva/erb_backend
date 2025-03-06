@@ -19,6 +19,7 @@ use App\Models\Payment;
 use App\Services\ErbPay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\Mail\OrderShipped;
 
 class EngineersController extends Controller
 {
@@ -28,6 +29,14 @@ class EngineersController extends Controller
     public function __construct(ErbPay $erbPay)
     {
         $this->erbPay = $erbPay;
+    }
+
+    public function sendEmail()
+    {
+        $order = ELicence::find(1); // Get an order
+        Mail::to('isaacnsenggiyunva@example.com')->send(new OrderShipped($order));
+
+        return "Email sent successfully!";
     }
 
     public function storeLicence(Request $request)
