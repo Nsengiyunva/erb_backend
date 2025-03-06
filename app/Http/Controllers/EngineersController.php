@@ -34,7 +34,7 @@ class EngineersController extends Controller
     public function sendEmail()
     {
         $order = ELicence::find(1); // Get an order
-        Mail::to('isaacnsenggiyunva@example.com')->send(new OrderShipped($order));
+        Mail::to('isaacnsengiyunva@example.com')->send(new OrderShipped($order));
 
         return "Email sent successfully!";
     }
