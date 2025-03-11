@@ -19,6 +19,7 @@ use App\Models\Payment;
 use App\Services\ErbPay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderShipped;
 
@@ -32,12 +33,22 @@ class EngineersController extends Controller
         $this->erbPay = $erbPay;
     }
 
-    public function sendEmail()
-    {
-        $order = ELicence::find(1); // Get an order
-        Mail::to('isaacnsengiyunva@gmail.com')->send(new OrderShipped($order));
-
-        return "Email sent successfully!";
+    public function sendmail(Request $request){
+        $title = 'Tree Planting and Licensing Application';
+        $user_details = [
+            'name' => $request->name,
+            'content' => $request->content,
+            'email' => $request->email
+        ];
+        $sendmail = Mail::to($user_details['email'])->send(
+            new SendMail($title,$user_details)
+        );
+        if(empty( $sendemail )){
+            return response()->json([ 'message' => 'Mail has been sent successfully' ], 200 );
+        }
+        else {
+            return response()->json([ 'message' => 'Mail Sent fail'], 400);
+        }
     }
 
     public function storeLicence(Request $request)
