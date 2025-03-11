@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function ($router) {
-  Route::post('/test', [OtherController::class, "index" ] );   
+  Route::post('/test', [MainController::class, "sendmail" ] );   
   
   Route::post( "erb_loginUser", [EngineersController::class, 'loginUser'] );
   Route::post( "erb_storeUser", [EngineersController::class, 'storeUser'] );
