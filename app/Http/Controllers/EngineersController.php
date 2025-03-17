@@ -244,7 +244,7 @@ class EngineersController extends Controller
             "success" => true,
             "id" => $elicence->id,
             "payment_id" => $payment_id,
-            "message" => "Licence Application has been added successfully."
+            "message" => "Licence Application has been created successfully."
         ]);
     }
 
