@@ -238,7 +238,7 @@ class EngineersController extends Controller
         // $payment->created_by = $request->applicant_id;
         // $payment->save();
 
-        $payment_id = $this->create_payment( $elicence->id, $request->applicant_id, $request->telephone );
+        $payment_id = $this->createPayment( $elicence->id, $request->applicant_id, $request->telephone );
 
         return response()->json([
             "success" => true,
