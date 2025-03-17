@@ -13,6 +13,13 @@ class OTPController extends Controller
 {
     public function sendOTP(Request $request)
     {
+        $title = "Test X";
+        $user_details = [
+            'name' => "Test Name",
+            'content' => "Test Content",
+            'email' => "isaacnsengiyunva@gmail.com"
+        ];
+        
         $request->validate([
             'email' => 'required|email',
         ]);
@@ -24,10 +31,10 @@ class OTPController extends Controller
         Cache::put('otp_' . $request->email, $otp, now()->addMinutes(5));
 
         // Send email
-        Mail::to($request->email)->send(new OTPMail($otp));
-        // $sendmail = Mail::to($request->email)->send(
-        //     new SendMail($title,$user_details)
-        // );
+        // Mail::to($request->email)->send(new OTPMail($otp));
+        Mail::to($request->email)->send(
+            new SendMail($title,$user_details)
+        );
 
         return response()->json(['message' => 'OTP sent successfully'], 200);
     }
