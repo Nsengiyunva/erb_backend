@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
-// use App\Mail\OTPMail;
+use App\Mail\OTPMail;
 use App\Models\ELicenceUser;
 use Illuminate\Support\Facades\Cache;
 
