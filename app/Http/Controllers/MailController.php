@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     public function sendmail(Request $request){
-        $title = 'Tree Planting and Licensing Application';
+        $title = 'Sending an Email Notification';
         $user_details = [
-            'name' => $request->name,
-            'content' => $request->content,
-            'email' => $request->email
+            'name' => "Test Name",
+            'content' => "Test Content",
+            'email' => "isaacnsengiyunva@gmail.com"
         ];
         $sendmail = Mail::to($user_details['email'])->send(
             new SendMail($title,$user_details)
