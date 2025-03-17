@@ -33,7 +33,12 @@ class EngineersController extends Controller
         $this->erbPay = $erbPay;
     }
 
-    public function createPayment( $application_id, $applicant_id, $phone_number  ){
+    public function getAllUsers() {
+        $users = ELicenceUser::all();
+        return response()-> json( $users );
+    }
+
+    public function makePayment( $application_id, $applicant_id, $phone_number  ){
         $payment = new Payment;
 
         $this->erbPay->setPayment($payment);
@@ -46,7 +51,7 @@ class EngineersController extends Controller
             "phone_no" => "0773917523",
             "source_system" => "MTN",
             "amount" => 500,
-            "narrative" => "ERB Payment Status",
+            "narrative" => "ERB Payment Test",
             "sent_from" => "Isaac"
         ] );
         
@@ -238,7 +243,7 @@ class EngineersController extends Controller
         // $payment->created_by = $request->applicant_id;
         // $payment->save();
 
-        $payment_id = $this->createPayment( $elicence->id, $request->applicant_id, $request->telephone );
+        $payment_id = $this->makePayment( $elicence->id, $request->applicant_id, $request->telephone );
 
         return response()->json([
             "success" => true,
