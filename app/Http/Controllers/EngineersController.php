@@ -39,7 +39,7 @@ class EngineersController extends Controller
         $this->erbPay->setPayment($payment);
 
         $payment->mode = "MOBILE";
-        $payment->phone_no = $phone_number;
+        $payment->phone_no = "0773917523";
 
         
         $this->erbPay->pay( [
