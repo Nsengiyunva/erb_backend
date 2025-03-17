@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\EngineersController;
+use App\Http\Controllers\OTPController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\OtherController;
 /*
@@ -39,7 +40,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::get( "erb_registered", [EngineersController::class, 'fetchEngineers'] );
   Route::get("/payments/{id}",[PaymentsController::class, 'show'] );
   Route::get("/payments",[PaymentsController::class, 'fetchAllPayments'] );
-  Route::post( "/send-email-notification", [ EngineersController::class, 'sendmail'] );
+  Route::post( "send-email-notification", [ EngineersController::class, 'sendmail'] );
   
   Route::post('send-otp', [ OTPController::class, 'sendOTP' ]);
   Route::post('verify-otp', [ OTPController::class, 'verifyOTP' ]);
