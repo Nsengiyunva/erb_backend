@@ -34,8 +34,13 @@ class EngineersController extends Controller
     }
 
     public function getAllUsers() {
-        $users = ELicenceUser::all();
-        return response()-> json( $users );
+        $sql = "SELECT DISTINCT id, first_name, surname, other_names, name, user_type, email, gender, country, registered, licence_no FROM elicence_user";
+        $results = DB::select( $sql );
+
+        return response()->json( [
+            "success" => true,
+            "users" => $results
+        ] );
     }
 
     public function makePayment( $application_id, $applicant_id, $phone_number  ){
