@@ -33,6 +33,30 @@ class EngineersController extends Controller
         $this->erbPay = $erbPay;
     }
 
+    public function createPayment( $application_id, $applicant_id, $phone_number  ){
+        $payment = new Payment;
+
+        $this->erbPay->setPayment($payment);
+
+        $payment->mode = "MOBILE";
+        $payment->phone_no = $phone_number;
+
+        
+        $this->erbPay->pay( [
+            "phone_no" => "0773917523",
+            "source_system" => "MTN",
+            "amount" => 500,
+            "narrative" => "ERB Payment Status",
+            "sent_from" => "Isaac"
+        ] );
+        
+        $payment->elicense_id = $application_id;
+        $payment->created_by = $applicant_id;
+        $payment->save();
+
+        return $payment->id;
+    }
+
     public function sendmail(Request $request){
         $title = 'ERB Licensing';
 
@@ -56,11 +80,11 @@ class EngineersController extends Controller
     public function storeLicence(Request $request)
     {
 
-        $request->validate( [
-            "payment_mode" => "required",
-            "payment_phone_no" => "required",
-            "payment_source_system" => "required"
-        ] );
+        // $request->validate( [
+        //     "payment_mode" => "required",
+        //     "payment_phone_no" => "required",
+        //     "payment_source_system" => "required"
+        // ] );
 
         $elicence = new ELicence;
         $education = new ELicenceEducation;
@@ -188,38 +212,38 @@ class EngineersController extends Controller
             );
         }
 
-        $payment = new Payment;
-        $payment->mode = "MOBILE";
-        $this->erbPay->setPayment($payment);
-        $payment->phone_no = $request->input("payment_phone_no");
+        // $payment = new Payment;
+        // $payment->mode = "MOBILE";
+        // $this->erbPay->setPayment($payment);
+        // $payment->phone_no = $request->input("payment_phone_no");
 
-        //0701234110
-        $this->erbPay->pay( [
-            "phone_no" => "0773917523",
-            "source_system" => "MTN",
-            "amount" => 500,
-            "narrative" => "ERB Payment Status",
-            "sent_from" => "Isaac"
-        ] );
-
+        // //0701234110
         // $this->erbPay->pay( [
-        //     "phone_no":"0773917523",
-        //     "amount": 500,
-        //     "narrative":"ERB Test Payment",
-        //     "sent_from":"Isaac King",
-        //     "source_system":"MTN"
+        //     "phone_no" => "0773917523",
+        //     "source_system" => "MTN",
+        //     "amount" => 500,
+        //     "narrative" => "ERB Payment Status",
+        //     "sent_from" => "Isaac"
         // ] );
-        
-        $payment->elicense_id = $elicence->id;
-        $payment->created_by = $request->applicant_id;
-        $payment->save();
 
-        $this->create_payment();
+        // // $this->erbPay->pay( [
+        // //     "phone_no":"0773917523",
+        // //     "amount": 500,
+        // //     "narrative":"ERB Test Payment",
+        // //     "sent_from":"Isaac King",
+        // //     "source_system":"MTN"
+        // // ] );
+        
+        // $payment->elicense_id = $elicence->id;
+        // $payment->created_by = $request->applicant_id;
+        // $payment->save();
+
+        $payment_id = $this->create_payment( $elicence->id, $request->applicant_id, $request->telephone );
 
         return response()->json([
             "success" => true,
             "id" => $elicence->id,
-            "payment_id" => $payment->id,
+            "payment_id" => $payment_id,
             "message" => "Licence Application has been added successfully."
         ]);
     }
