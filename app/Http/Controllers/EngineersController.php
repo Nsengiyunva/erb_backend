@@ -134,7 +134,6 @@ class EngineersController extends Controller
             );
         }
 
-
         foreach ($request->membership as $child) {
             $sql = DB::table('elicence_membership')->insert(
                 [
@@ -214,6 +213,8 @@ class EngineersController extends Controller
         $payment->elicense_id = $elicence->id;
         $payment->created_by = $request->applicant_id;
         $payment->save();
+
+        $this->create_payment();
 
         return response()->json([
             "success" => true,
