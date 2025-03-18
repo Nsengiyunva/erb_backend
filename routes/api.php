@@ -29,6 +29,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::get(  "erb_getLicenceById/{id}", [EngineersController::class, 'getLicenceById'] );
   Route::get(  "erb_getRemarks/{licenceId}", [EngineersController::class, 'getLicenceRemarks'] );
   Route::post( "erb_update", [EngineersController::class, 'updateLicence'] );
+  Route::post( "erb_update_accounts", [EngineersController::class, 'updateLicencePayment']);
   Route::post( "erb-success-payment", [EngineersController::class, 'paymentSuccess'] );
   Route::get( "erb-getSponsors", [EngineersController::class, 'getSponsorsByUser'] );
   Route::post( "erb_updateSponsor", [EngineersController::class, 'updateSponsor'] );

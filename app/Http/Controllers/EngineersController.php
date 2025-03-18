@@ -272,6 +272,19 @@ class EngineersController extends Controller
         ] );
     }
 
+    public function updateLicencePayment (Request $request){
+        $elicence = ELicence::where("id", $request->id)->first();
+
+        $elicence->account_status = $request->account_status;
+        
+        $elicence->save();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Payment Status has been updated successfully."
+        ]);
+    }
+
     public function updateLicence(Request $request){
         $elicence = ELicence::where("id", $request->id)->first();
 
