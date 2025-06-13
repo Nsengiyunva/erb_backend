@@ -7,6 +7,7 @@ use App\Http\Controllers\EngineersController;
 use App\Http\Controllers\OTPController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\FileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,6 +42,8 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   
   Route::post('send-otp', [ OTPController::class, 'sendOTP' ]);
   Route::post('verify-otp', [ OTPController::class, 'verifyOTP' ]);
+
+  Route::post( "upload", [FileController::class, "upload" ] );
 } );
 
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");
