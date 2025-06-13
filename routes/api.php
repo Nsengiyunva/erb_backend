@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\EngineersController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\FileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,8 +38,9 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::post( "erb_updateSponsor", [EngineersController::class, 'updateSponsor'] );
   Route::get( "erb_engineers/{category}", [EngineersController::class,'fetchErbEngineers'] ); 
   Route::get( "erb_registered", [EngineersController::class, 'fetchEngineers'] );
-  Route::gwt( "erb_users", [EngineersController::class, 'fetchRegistered' ]);
-
+  Route::get( "erb_users", [EngineersController::class, 'fetchRegistered' ]);
+  Route::post( "upload", [FileController::class, "upload" ] );
+  
 } );
 
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");
