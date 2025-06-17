@@ -93,7 +93,7 @@ class EngineersController extends Controller
         $elicence->name = $request->name;
         $elicence->email_address = $request->email_address;
         $elicence->birth_place = $request->birth_place;
-        $elicence->birth_date = $request->birth_date;
+        $elicence->dob = $request->birth_date;
         $elicence->telephone = $request->telephone;
         $elicence->nationality = $request->nationality;
         $elicence->type = $request->type;
