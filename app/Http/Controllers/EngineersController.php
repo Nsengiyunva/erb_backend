@@ -97,6 +97,7 @@ class EngineersController extends Controller
         $elicence->telephone = $request->telephone;
         $elicence->nationality = $request->nationality;
         $elicence->type = $request->type;
+        $elicence->draft_type = "draft";
 
         $elicence->created_at = now();
         $elicence->updated_at = now();
@@ -107,6 +108,10 @@ class EngineersController extends Controller
             "success" => true,
             "ID" => $elicence->id
         ]);
+    }
+
+    public function updateSavedDraft( Request $request ){
+
     }
 
     public function storeLicence(Request $request)
