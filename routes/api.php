@@ -44,7 +44,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::post('verify-otp', [ OTPController::class, 'verifyOTP' ]);
 
   Route::post( "upload", [FileController::class, "upload" ] );
-  Route::post( "save-draft", [EngineersController::class, "saveDraft" ] );
+  Route::post( "save-draft", [EngineersController::class, "storeDraft" ] );
 } );
 
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");
