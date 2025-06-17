@@ -43,21 +43,21 @@ class EngineersController extends Controller
         ] );
     }
 
-    public function makePayment( $application_id, $applicant_id, $phone_number  ){
+    public function makePayment( $application_id, $applicant_id, $phone_number, $source = "MTN", $narrative = "This is a payment for a license", $person = "Isaac"  ){
         $payment = new Payment;
 
         $this->erbPay->setPayment($payment);
 
         $payment->mode = "MOBILE";
-        $payment->phone_no = "0773917523";
+        $payment->phone_no = $phone_number;
 
         
         $this->erbPay->pay( [
-            "phone_no" => "0773917523",
-            "source_system" => "MTN",
+            "phone_no" => $phone_number,
+            "source_system" => $source,
             "amount" => 500,
-            "narrative" => "ERB Payment Test",
-            "sent_from" => "Isaac"
+            "narrative" => $narrative,
+            "sent_from" => $person
         ] );
         
         $payment->elicense_id = $application_id;
@@ -87,15 +87,30 @@ class EngineersController extends Controller
         }
     }
 
+    public function storeDraft( Request $request ){
+        $elicence = new ELicence;
+
+        $elicence->name = $request->name;
+        $elicence->email_address = $request->email_address;
+        $elicence->birth_place = $request->birth_place;
+        $elicence->birth_date = $request->birth_date;
+        $elicence->telephone = $request->telephone;
+        $elicence->nationality = $request->nationality;
+        $elicence->type = $request->type;
+
+        $elicence->created_at = now();
+        $elicence->updated_at = now();
+
+        $elicence->save();
+
+         return response()->json([
+            "success" => true,
+            "ID" => $elicence->id
+        ]);
+    }
+
     public function storeLicence(Request $request)
     {
-
-        // $request->validate( [
-        //     "payment_mode" => "required",
-        //     "payment_phone_no" => "required",
-        //     "payment_source_system" => "required"
-        // ] );
-
         $elicence = new ELicence;
         $education = new ELicenceEducation;
 
