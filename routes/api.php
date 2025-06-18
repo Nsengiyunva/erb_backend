@@ -44,10 +44,11 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::post('verify-otp', [ OTPController::class, 'verifyOTP' ]);
 
   Route::post( "upload", [FileController::class, "upload" ] );
-  
+
   Route::post( "save-draft", [EngineersController::class, "storeDraft" ] );
   Route::post( "get-drafts", [EngineersController::class, "fetchDraftsByEmail"] );
   Route::post( "fetch-drafts-by-id", [EngineersController::class, "getDraftsById" ] );
+  Route::put( "update-draft", [EngineersController::class, "updateDraft" ] );
 } );
 
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");
