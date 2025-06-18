@@ -129,7 +129,6 @@ class EngineersController extends Controller
         $elicence->progress = $request->progress;
         $elicence->tracking_no = $request->tracking_no;
         $elicence->stage = $request->stage;
-        $elicence->applicant_id = $request->applicant_id;
 
         $elicence->name = $request->name;
         $elicence->email_address = $request->email_address;
@@ -147,53 +146,61 @@ class EngineersController extends Controller
 
         $elicence->save();
 
-
-        foreach ($request->education as $child) {
-            $sql = DB::table('elicence_education')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'qualification' => $child['qualification'],
-                    'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
+        if( count( $request->education ) > 0 ) {
+            foreach ($request->education as $child) {
+                $sql = DB::table('elicence_education')->insert(
+                    [
+                        'parentID' => $elicence->id,
+                        'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
+                        'qualification' => $child['qualification'],
+                        'institution' => $child['institution'],
+                        'file' => $child['attach_file'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
 
-        foreach ($request->sponsors as $child) {
-            $sql = DB::table('elicence_sponsors')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'sponsor_name' => $child['sponsor_name'],
-                    'registered' => $child['registered'],
-                    'registration_number' => $child['registration_number'],
-                    'discipline' => $child['discipline'],
-                    'progress' => $child['progress'],
-                    'status' => $child['status'],
-                    'email_address' => $child['email_address'],
-                    'user_id' => $child['user_id'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
+        
+        if( count( $request->sponsors ) > 0 ) {
+            foreach ($request->sponsors as $child) {
+                $sql = DB::table('elicence_sponsors')->insert(
+                    [
+                        'parentID' => $elicence->id,
+                        'sponsor_name' => $child['sponsor_name'],
+                        'registered' => $child['registered'],
+                        'registration_number' => $child['registration_number'],
+                        'discipline' => $child['discipline'],
+                        'progress' => $child['progress'],
+                        'status' => $child['status'],
+                        'email_address' => $child['email_address'],
+                        'user_id' => $child['user_id'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
 
-        foreach ($request->membership as $child) {
-            $sql = DB::table('elicence_membership')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'membership_name' => $child['membership_name'],
-                    'attach_file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
+        
+        if( count( $request->membership ) > 0  ) {
+            foreach ($request->membership as $child) {
+                $sql = DB::table('elicence_membership')->insert(
+                    [
+                        'parentID' => $elicence->id,
+                        'membership_name' => $child['membership_name'],
+                        'attach_file' => $child['attach_file'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
 
-        foreach ($request->engineering as $child) {
+        if( count( $request->engineering ) > 0 ) {
+            foreach ($request->engineering as $child) {
             $sql = DB::table('elicence_engineering')->insert(
                 [
                     'parentID' => $elicence->id,
@@ -205,34 +212,39 @@ class EngineersController extends Controller
                 ]
             );
         }
+        }
 
-        foreach ($request->positions as $child) {
-            $sql = DB::table('elicence_positions')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
+        if( count( $request->positions ) > 0  ) {
+            foreach ($request->positions as $child) {
+                $sql = DB::table('elicence_positions')->insert(
+                    [
+                        'parentID' => $elicence->id,
+                        'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
+                        'organisation' => $child['organisation'],
+                        'cadre' => $child['cadre'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
 
 
-        foreach ($request->practicals as $child) {
-            $sql = DB::table('elicence_practicals')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
+        if( count( $request->practicals ) > 0 ) {
+            foreach ($request->practicals as $child) {
+                $sql = DB::table('elicence_practicals')->insert(
+                    [
+                        'parentID' => $elicence->id,
+                        'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
+                        'organisation' => $child['organisation'],
+                        'cadre' => $child['cadre'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
 
         return response()->json([
