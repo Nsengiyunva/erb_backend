@@ -45,8 +45,8 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
 
   Route::post( "upload", [FileController::class, "upload" ] );
   Route::post( "save-draft", [EngineersController::class, "storeDraft" ] );
-  Route::get( "drafts/:email", [EngineersController::class, "fetchDrafts"] );
-  Route::get( "drafts/:id", [EngineersController::class, "getDrafts" ] );
+  Route::post( "get-drafts", [EngineersController::class, "fetchDraftsByEmail"] );
+  Route::post( "fetch-drafts-by-id", [EngineersController::class, "getDraftsById" ] );
 } );
 
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");

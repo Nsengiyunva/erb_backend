@@ -87,18 +87,17 @@ class EngineersController extends Controller
         }
     }
 
-    public function getDrafts( $id ) {
-        $sql = "SELECT DISTINCT * FROM elicence WHERE id LIKE %".$id."%";
+    public function getDraftsById( Request $request ) {
+        $sql = "SELECT DISTINCT * FROM elicence WHERE id LIKE %".$request->id."%";
         $results = DB::select( $sql );
-
         return response()->json( [
             "success" => true,
             "results" => $results
         ] );
     }
 
-    public function fetchDrafts( $email ) {
-        $sql = "SELECT DISTINCT * FROM elicence WHERE draft_type LIKE '%drafts%' AND email_address LIKE '%".$email."%'";
+    public function fetchDraftsByEmail( Request $request ) {
+        $sql = "SELECT DISTINCT * FROM elicence WHERE draft_type LIKE '%drafts%' AND email_address LIKE '%".$request->email."%'";
         $results = DB::select( $sql );
 
         return response()->json( [
