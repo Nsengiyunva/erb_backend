@@ -262,14 +262,14 @@ class EngineersController extends Controller
         $elicence->sponsor_score = $request->sponsor_score;
         $elicence->category = $request->category;
 
-        $elicence->firstname = $request->firstname;
+        $elicence->firstname = $request->first_name;
         $elicence->surname = $request->surname;
         $elicence->other_names = $request->other_names;
         $elicence->address = $request->address;
         $elicence->dob = $request->birth_date;
         $elicence->nationality = $request->nationality;
-        $elicence->pob = $request->pob;
-        $elicence->nin = $request->nin;
+        $elicence->pob = $request->birth_place;
+        $elicence->nin = $request->document_id;
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
 
@@ -427,14 +427,14 @@ class EngineersController extends Controller
         $elicence->sponsor_score = $request->sponsor_score;
         $elicence->category = $request->category;
 
-        $elicence->firstname = $request->firstname;
+        $elicence->firstname = $request->first_name;
         $elicence->surname = $request->surname;
         $elicence->other_names = $request->other_names;
         $elicence->address = $request->address;
         $elicence->dob = $request->birth_date;
         $elicence->nationality = $request->nationality;
-        $elicence->pob = $request->pob;
-        $elicence->nin = $request->nin;
+        $elicence->pob = $request->birth_place;
+        $elicence->nin = $request->document_id;
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
 
@@ -626,7 +626,7 @@ class EngineersController extends Controller
         if ($request->stage) {
             $elicence->stage = $request->stage;
         }
-        
+
         //approver
         $approver->licence_application_id = $request->id;
         $approver->actor_id = $request->actor_id;
