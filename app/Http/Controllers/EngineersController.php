@@ -285,9 +285,8 @@ class EngineersController extends Controller
         //other tables
         if( count( $request->education ) > 0  ) {
             DB::delete('DELETE FROM elicence_education WHERE parentID = ?', [ $request->applicationID ]);
-        }
 
-        foreach ($request->education as $child) {
+            foreach ($request->education as $child) {
             $sql = DB::table('elicence_education')->insert(
                 [
                     'parentID' => $request->applicationID,
@@ -301,11 +300,13 @@ class EngineersController extends Controller
                 ]
             );
         }
+        }
+
 
         if( count( $request->sponsors ) > 0  ) {
             DB::delete('DELETE FROM elicence_sponsors WHERE parentID = ?', [ $request->applicationID ]);
-        }
-        foreach ($request->sponsors as $child) {
+
+            foreach ($request->sponsors as $child) {
             $sql = DB::table('elicence_sponsors')->insert(
                 [
                     'parentID' => $request->applicationID,
@@ -322,45 +323,46 @@ class EngineersController extends Controller
                 ]
             );
         }
-
+        }
 
         if( count( $request->membership ) > 0  ) {
             DB::delete('DELETE FROM elicence_membership WHERE parentID = ?', [ $request->applicationID ]);
-        }
-        foreach ($request->membership as $child) {
-            $sql = DB::table('elicence_membership')->insert(
-                [
-                    'parentID' => $request->applicationID,
-                    'membership_name' => $child['membership_name'],
-                    'attach_file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
+
+            foreach ($request->membership as $child) {
+                $sql = DB::table('elicence_membership')->insert(
+                    [
+                        'parentID' => $request->applicationID,
+                        'membership_name' => $child['membership_name'],
+                        'attach_file' => $child['attach_file'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
 
 
         if( count( $request->engineering ) > 0  ) {
             DB::delete('DELETE FROM elicence_engineering WHERE parentID = ?', [ $request->applicationID ]);
-        }
-        foreach ($request->engineering as $child) {
-            $sql = DB::table('elicence_engineering')->insert(
-                [
-                    'parentID' => $request->applicationID,
-                    'start_date' => $child['start_date'],
-                    'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
 
+            foreach ($request->engineering as $child) {
+                $sql = DB::table('elicence_engineering')->insert(
+                    [
+                        'parentID' => $request->applicationID,
+                        'start_date' => $child['start_date'],
+                        'institution' => $child['institution'],
+                        'file' => $child['attach_file'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
+        }
 
         if( count( $request->positions ) > 0  ) {
             DB::delete('DELETE FROM elicence_positions WHERE parentID = ?', [ $request->applicationID ]);
-        }
-        foreach ($request->positions as $child) {
+
+            foreach ($request->positions as $child) {
             $sql = DB::table('elicence_positions')->insert(
                 [
                     'parentID' => $request->applicationID,
@@ -373,24 +375,27 @@ class EngineersController extends Controller
                 ]
             );
         }
+        }
+        
 
 
         if( count( $request->practicals ) > 0  ) {
             DB::delete('DELETE FROM elicence_practicals WHERE parentID = ?', [ $request->applicationID ]);
+            foreach ($request->practicals as $child) {
+                $sql = DB::table('elicence_practicals')->insert(
+                    [
+                        'parentID' => $request->applicationID,
+                        'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
+                        'organisation' => $child['organisation'],
+                        'cadre' => $child['cadre'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
         }
-        foreach ($request->practicals as $child) {
-            $sql = DB::table('elicence_practicals')->insert(
-                [
-                    'parentID' => $request->applicationID,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        
 
         //response
         return response()->json([
