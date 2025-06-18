@@ -146,7 +146,7 @@ class EngineersController extends Controller
 
         $elicence->save();
 
-        if( count( $request->education ) > 0 ) {
+        if( !is_null( $request->education ) ) {
             foreach ($request->education as $child) {
                 $sql = DB::table('elicence_education')->insert(
                     [
@@ -164,7 +164,7 @@ class EngineersController extends Controller
         }
 
         
-        if( count( $request->sponsors ) > 0 ) {
+        if( !is_null( $request->sponsors ) ) {
             foreach ($request->sponsors as $child) {
                 $sql = DB::table('elicence_sponsors')->insert(
                     [
@@ -185,7 +185,7 @@ class EngineersController extends Controller
         }
 
         
-        if( count( $request->membership ) > 0  ) {
+        if( !is_null( $request->membership )  ) {
             foreach ($request->membership as $child) {
                 $sql = DB::table('elicence_membership')->insert(
                     [
@@ -199,7 +199,7 @@ class EngineersController extends Controller
             }
         }
 
-        if( count( $request->engineering ) > 0 ) {
+        if( !is_null( $request->engineering ) ) {
             foreach ($request->engineering as $child) {
             $sql = DB::table('elicence_engineering')->insert(
                 [
@@ -214,7 +214,7 @@ class EngineersController extends Controller
         }
         }
 
-        if( count( $request->positions ) > 0  ) {
+        if( !is_null( $request->positions )  ) {
             foreach ($request->positions as $child) {
                 $sql = DB::table('elicence_positions')->insert(
                     [
@@ -231,7 +231,7 @@ class EngineersController extends Controller
         }
 
 
-        if( count( $request->practicals ) > 0 ) {
+        if( !is_null( $request->practicals ) ) {
             foreach ($request->practicals as $child) {
                 $sql = DB::table('elicence_practicals')->insert(
                     [
@@ -295,7 +295,7 @@ class EngineersController extends Controller
         $elicence->save();
 
         //other tables
-        if( count( $request->education ) > 0  ) {
+        if( !is_null( $request->education ) ) {
             DB::delete('DELETE FROM elicence_education WHERE parentID = ?', [ $request->applicationID ]);
 
             foreach ($request->education as $child) {
@@ -315,7 +315,7 @@ class EngineersController extends Controller
         }
 
 
-        if( count( $request->sponsors ) > 0  ) {
+        if( !is_null( $request->sponsors ) ) {
             DB::delete('DELETE FROM elicence_sponsors WHERE parentID = ?', [ $request->applicationID ]);
 
             foreach ($request->sponsors as $child) {
@@ -337,7 +337,7 @@ class EngineersController extends Controller
         }
         }
 
-        if( count( $request->membership ) > 0  ) {
+        if( !is_null( $request->membership ) ) {
             DB::delete('DELETE FROM elicence_membership WHERE parentID = ?', [ $request->applicationID ]);
 
             foreach ($request->membership as $child) {
@@ -354,7 +354,7 @@ class EngineersController extends Controller
         }
 
 
-        if( count( $request->engineering ) > 0  ) {
+        if( !is_null( $request->engineering ) ) {
             DB::delete('DELETE FROM elicence_engineering WHERE parentID = ?', [ $request->applicationID ]);
 
             foreach ($request->engineering as $child) {
@@ -371,7 +371,7 @@ class EngineersController extends Controller
             }
         }
 
-        if( count( $request->positions ) > 0  ) {
+        if( !is_null( $request->positions ) ) {
             DB::delete('DELETE FROM elicence_positions WHERE parentID = ?', [ $request->applicationID ]);
 
             foreach ($request->positions as $child) {
@@ -391,8 +391,9 @@ class EngineersController extends Controller
         
 
 
-        if( count( $request->practicals ) > 0  ) {
+        if( !is_null( $request->practicals ) ) {
             DB::delete('DELETE FROM elicence_practicals WHERE parentID = ?', [ $request->applicationID ]);
+            
             foreach ($request->practicals as $child) {
                 $sql = DB::table('elicence_practicals')->insert(
                     [
@@ -408,7 +409,6 @@ class EngineersController extends Controller
             }
         }
         
-
         //response
         return response()->json([
             "success" => true,
@@ -626,11 +626,10 @@ class EngineersController extends Controller
         if ($request->stage) {
             $elicence->stage = $request->stage;
         }
+        
         //approver
         $approver->licence_application_id = $request->id;
-        // $approver->actor = $request->actor;
         $approver->actor_id = $request->actor_id;
-        // $approver->actor_email = $request->actor_email;
         $approver->actor_role = $request->actor_role;
         $approver->comments = $request->comments;
         $approver->action = $request->action;
