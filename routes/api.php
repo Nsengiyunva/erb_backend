@@ -45,7 +45,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
 
   Route::post( "upload", [FileController::class, "upload" ] );
   Route::post( "save-draft", [EngineersController::class, "storeDraft" ] );
-  Route::get( "drafts", [EngineersController::class, "fetchDrafts"] );
+  Route::get( "drafts/:email", [EngineersController::class, "fetchDrafts"] );
   Route::get( "drafts/:id", [EngineersController::class, "getDrafts" ] );
 } );
 
