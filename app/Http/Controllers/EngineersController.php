@@ -442,7 +442,6 @@ class EngineersController extends Controller
         $elicence->progress = $request->progress;
         $elicence->tracking_no = $request->tracking_no;
         $elicence->stage = $request->stage;
-        $elicence->applicant_id = $request->applicant_id;
 
         $elicence->name = $request->name;
         $elicence->email_address = $request->email_address;
@@ -510,7 +509,9 @@ class EngineersController extends Controller
                     'parentID' => $elicence->id,
                     'start_date' => $child['start_date'],
                     'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
+                    'summary' => $child['summary'],
+                    'title' => $child['title'],
+                    'qualification' => $child['qualification'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
@@ -525,6 +526,8 @@ class EngineersController extends Controller
                     'end_date' => $child['end_date'],
                     'organisation' => $child['organisation'],
                     'cadre' => $child['cadre'],
+                    'title' => $child['title'],
+                    'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
@@ -540,6 +543,8 @@ class EngineersController extends Controller
                     'end_date' => $child['end_date'],
                     'organisation' => $child['organisation'],
                     'cadre' => $child['cadre'],
+                    'title' => $child['title'],
+                    'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
