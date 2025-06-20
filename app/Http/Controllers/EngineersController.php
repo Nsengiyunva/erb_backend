@@ -43,7 +43,7 @@ class EngineersController extends Controller
         ] );
     }
 
-    public function makePayment( $application_id, $applicant_id, $phone_number, $source = "MTN", $narrative = "This is a payment for a license", $person = "Isaac"  ){
+    public function makePayment( $application_id, $applicant_id, $phone_number, $source = "MTN", $narrative = "Payment for application fees", $person = "ERB"  ){
         $payment = new Payment;
 
         $this->erbPay->setPayment($payment);
@@ -572,7 +572,7 @@ class EngineersController extends Controller
         // $payment->created_by = $request->applicant_id;
         // $payment->save();
 
-        $payment_id = $this->makePayment( $elicence->id, $request->applicant_id, $request->telephone );
+        $payment_id = $this->makePayment( $elicence->id, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system,  );
 
         return response()->json([
             "success" => true,
