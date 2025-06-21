@@ -280,7 +280,7 @@ class EngineersController extends Controller
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
         $elicence->ever_convicted = $request->ever_convicted;
-        $elicnce->conviction_details = $request->conviction_details;
+        $elicence->conviction_details = $request->conviction_details;
 
         $elicence->status = $request->status;
         $elicence->progress = $request->progress;
@@ -321,9 +321,8 @@ class EngineersController extends Controller
                     'updated_at' =>  now(),
                 ]
             );
+            }
         }
-        }
-
 
         if( !is_null( $request->sponsors ) ) {
             DB::delete('DELETE FROM elicence_sponsors WHERE parentID = ?', [ $request->applicationID ]);
@@ -450,6 +449,8 @@ class EngineersController extends Controller
         $elicence->nin = $request->document_id;
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
+        $elicence->conviction_details = $request->conviction_details;
+        $elicence->ever_convicted = $request->ever_convicted;
 
         $elicence->status = $request->status;
         $elicence->progress = $request->progress;
