@@ -124,6 +124,8 @@ class EngineersController extends Controller
         $elicence->nin = $request->nin;
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
+        $elience->ever_convicted = $request->ever_convicted;
+        $elicence->conviction_details = $request->conviction_details;
 
         $elicence->status = $request->status;
         $elicence->progress = $request->progress;
@@ -156,6 +158,7 @@ class EngineersController extends Controller
                         'qualification' => $child['qualification'],
                         'institution' => $child['institution'],
                         'file' => $child['attach_file'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -192,6 +195,7 @@ class EngineersController extends Controller
                         'parentID' => $elicence->id,
                         'membership_name' => $child['membership_name'],
                         'attach_file' => $child['attach_file'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -207,6 +211,7 @@ class EngineersController extends Controller
                     'start_date' => $child['start_date'],
                     'institution' => $child['institution'],
                     'file' => $child['attach_file'],
+                    'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
@@ -223,6 +228,7 @@ class EngineersController extends Controller
                         'end_date' => $child['end_date'],
                         'organisation' => $child['organisation'],
                         'cadre' => $child['cadre'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -240,6 +246,7 @@ class EngineersController extends Controller
                         'end_date' => $child['end_date'],
                         'organisation' => $child['organisation'],
                         'cadre' => $child['cadre'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -272,6 +279,8 @@ class EngineersController extends Controller
         $elicence->nin = $request->document_id;
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
+        $elicence->ever_convicted = $request->ever_convicted;
+        $elicnce->conviction_details = $request->conviction_details;
 
         $elicence->status = $request->status;
         $elicence->progress = $request->progress;
@@ -288,7 +297,7 @@ class EngineersController extends Controller
         $elicence->user_picture = $request->user_picture;
         $elicence->document_type = $request->document_type;
         $elicence->document_id = $request->document_id;
-        $elicence->draft_type = "draft";
+        $elicence->draft_type = $request->draft;
 
         $elicence->updated_at = now();
 
@@ -307,6 +316,7 @@ class EngineersController extends Controller
                     'qualification' => $child['qualification'],
                     'institution' => $child['institution'],
                     'file' => $child['attach_file'],
+                    'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
@@ -334,7 +344,7 @@ class EngineersController extends Controller
                     'updated_at' =>  now(),
                 ]
             );
-        }
+            }
         }
 
         if( !is_null( $request->membership ) ) {
@@ -346,6 +356,7 @@ class EngineersController extends Controller
                         'parentID' => $request->applicationID,
                         'membership_name' => $child['membership_name'],
                         'attach_file' => $child['attach_file'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -364,6 +375,7 @@ class EngineersController extends Controller
                         'start_date' => $child['start_date'],
                         'institution' => $child['institution'],
                         'file' => $child['attach_file'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -382,14 +394,13 @@ class EngineersController extends Controller
                     'end_date' => $child['end_date'],
                     'organisation' => $child['organisation'],
                     'cadre' => $child['cadre'],
+                    'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
             );
         }
         }
-        
-
 
         if( !is_null( $request->practicals ) ) {
             DB::delete('DELETE FROM elicence_practicals WHERE parentID = ?', [ $request->applicationID ]);
@@ -402,6 +413,7 @@ class EngineersController extends Controller
                         'end_date' => $child['end_date'],
                         'organisation' => $child['organisation'],
                         'cadre' => $child['cadre'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -412,7 +424,8 @@ class EngineersController extends Controller
         //response
         return response()->json([
             "success" => true,
-            "message" => "Licence Application has been updated successfully."
+            "message" => "Licence Application has been updated successfully.",
+            "application_id" => $request->applicationID
         ]);
     }
 
