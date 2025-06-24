@@ -298,7 +298,6 @@ class EngineersController extends Controller
         $elicence->user_picture = $request->user_picture;
         $elicence->document_type = $request->document_type;
         $elicence->document_id = $request->document_id;
-        $elicence->draft_type = $request->draft;
 
         $elicence->updated_at = now();
 
