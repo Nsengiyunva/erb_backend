@@ -480,7 +480,6 @@ class EngineersController extends Controller
                     'end_date' => $child['end_date'],
                     'qualification' => $child['qualification'],
                     'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
@@ -510,7 +509,6 @@ class EngineersController extends Controller
                 [
                     'parentID' => $elicence->id,
                     'membership_name' => $child['membership_name'],
-                    'attach_file' => $child['attach_file'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
