@@ -158,7 +158,7 @@ class EngineersController extends Controller
                         'qualification' => $child['qualification'],
                         'institution' => $child['institution'],
                         'file' => $child['attach_file'],
-                        'summary' => $child['summary'],
+                        // 'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -228,7 +228,7 @@ class EngineersController extends Controller
                         'end_date' => $child['end_date'],
                         'organisation' => $child['organisation'],
                         'cadre' => $child['cadre'],
-                        'summary' => $child['summary'],
+                        // 'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -246,7 +246,7 @@ class EngineersController extends Controller
                         'end_date' => $child['end_date'],
                         'organisation' => $child['organisation'],
                         'cadre' => $child['cadre'],
-                        'summary' => $child['summary'],
+                        // 'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -428,8 +428,7 @@ class EngineersController extends Controller
         ]);
     }
 
-    public function storeLicence(Request $request)
-    {
+    public function storeLicence(Request $request) {
         $elicence = new ELicence;
         
         $elicence = new ELicence;
