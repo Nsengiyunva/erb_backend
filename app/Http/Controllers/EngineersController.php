@@ -124,7 +124,7 @@ class EngineersController extends Controller
         $elicence->nin = $request->nin;
         $elicence->telephone = $request->telephone;
         $elicence->applicant_id = $request->applicant_id;
-        $elience->ever_convicted = $request->ever_convicted;
+        $elicence->ever_convicted = $request->ever_convicted;
         $elicence->conviction_details = $request->conviction_details;
 
         $elicence->status = $request->status;
