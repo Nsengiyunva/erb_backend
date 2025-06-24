@@ -354,7 +354,6 @@ class EngineersController extends Controller
                     [
                         'parentID' => $request->applicationID,
                         'membership_name' => $child['membership_name'],
-                        'attach_file' => $child['attach_file'],
                         'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
