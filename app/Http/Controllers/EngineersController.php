@@ -157,8 +157,7 @@ class EngineersController extends Controller
                         'end_date' => $child['end_date'],
                         'qualification' => $child['qualification'],
                         'institution' => $child['institution'],
-                        'file' => $child['attach_file'],
-                        // 'summary' => $child['summary'],
+                        'summary' => $child['summary'],
                         'created_at' => now(),
                         'updated_at' =>  now(),
                     ]
@@ -315,7 +314,6 @@ class EngineersController extends Controller
                     'end_date' => $child['end_date'],
                     'qualification' => $child['qualification'],
                     'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
                     'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
@@ -479,6 +477,7 @@ class EngineersController extends Controller
                     'end_date' => $child['end_date'],
                     'qualification' => $child['qualification'],
                     'institution' => $child['institution'],
+                    'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
