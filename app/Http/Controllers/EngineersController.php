@@ -521,7 +521,6 @@ class EngineersController extends Controller
                     'parentID' => $elicence->id,
                     'start_date' => $child['start_date'],
                     'institution' => $child['institution'],
-                    'summary' => $child['summary'],
                     'title' => $child['title'],
                     'qualification' => $child['qualification'],
                     'created_at' => now(),
