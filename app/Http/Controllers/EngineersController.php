@@ -538,7 +538,7 @@ class EngineersController extends Controller
                     'organisation' => $child['organisation'],
                     'cadre' => $child['cadre'],
                     'title' => $child['title'],
-                    'summary' => $child['summary'],
+                    // 'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
@@ -555,7 +555,7 @@ class EngineersController extends Controller
                     'organisation' => $child['organisation'],
                     'cadre' => $child['cadre'],
                     'title' => $child['title'],
-                    'summary' => $child['summary'],
+                    // 'summary' => $child['summary'],
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
