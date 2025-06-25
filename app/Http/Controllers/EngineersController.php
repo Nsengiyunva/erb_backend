@@ -261,12 +261,27 @@ class EngineersController extends Controller
     }
 
     public function updateDraft( Request $request ) {
-        DB::table('elicence')
+        $updated = DB::table('elicence')
             ->where('id', $request->applicationID )
             ->update([
                 'type' => $request->type,
                 'updated_at' => now(),
             ]);
+
+        if ($updated) {
+            $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
+
+            return response()->json([
+                'message' => 'License updated successfully',
+                'licence' => $licence,
+            ]);
+        } 
+        else {
+            return response()->json([
+                'message' => 'License not found or no changes made',
+            ], 404);
+        }
+
         // $elicence = ELicence::where( "id", $request->applicationID )->first();
 
         //updating the draft
@@ -425,11 +440,11 @@ class EngineersController extends Controller
         // }
         
         //response
-        return response()->json([
-            "success" => true,
-            "message" => "Licence Application has been updated successfully.",
-            "application_id" => $request->applicationID
-        ]);
+        // return response()->json([
+        //     "success" => true,
+        //     "message" => "Licence Application has been updated successfully.",
+        //     "application_id" => $request->applicat
+        // ]);
     }
 
     public function storeLicence(Request $request) {
