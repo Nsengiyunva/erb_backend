@@ -299,9 +299,9 @@ class EngineersController extends Controller
         // $elicence->document_type = $request->document_type;
         // $elicence->document_id = $request->document_id;
 
-        // $elicence->updated_at = now();
+        $elicence->updated_at = now();
 
-        // $elicence->save();
+        $elicence->save();
 
         //other tables
         // if( !is_null( $request->education ) ) {
