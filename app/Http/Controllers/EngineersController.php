@@ -264,7 +264,7 @@ class EngineersController extends Controller
         $elicence = ELicence::where("id", $request->applicationID )->first();
 
         //updating the draft
-        // $elicence->type = $request->type;
+        $elicence->type = $request->type;
         // $elicence->profession = $request->profession;
         // $elicence->sponsor_score = $request->sponsor_score;
         // $elicence->category = $request->category;
