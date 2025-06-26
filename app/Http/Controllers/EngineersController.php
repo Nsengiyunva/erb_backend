@@ -96,8 +96,8 @@ class EngineersController extends Controller
         ] );
     }
 
-    public function fetchDraftsByEmail ( Request $request ) {
-        $sql = "SELECT DISTINCT * FROM elicence WHERE draft_type LIKE '%drafts%' AND email_address LIKE '%".$request->email."%'";
+    public function fetchDraftsByEmail ( $email ) {
+        $sql = "SELECT DISTINCT * FROM elicence WHERE draft_type LIKE '%draft%' AND email_address = '".$email."'";
         $results = DB::select( $sql );
 
         return response()->json( [
