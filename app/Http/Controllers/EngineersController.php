@@ -425,139 +425,139 @@ class EngineersController extends Controller
     }
 
     public function storeLicence(Request $request) {
-        $elicence = new ELicence;
+        // $elicence = new ELicence;
         
-        $elicence = new ELicence;
+        // $elicence = new ELicence;
 
-        $elicence->type = $request->type;
-        $elicence->profession = $request->profession;
-        $elicence->sponsor_score = $request->sponsor_score;
-        $elicence->category = $request->category;
-        $elicence->draft_type = $request->draft_type;
+        // $elicence->type = $request->type;
+        // $elicence->profession = $request->profession;
+        // $elicence->sponsor_score = $request->sponsor_score;
+        // $elicence->category = $request->category;
+        // $elicence->draft_type = $request->draft_type;
 
-        $elicence->firstname = $request->first_name;
-        $elicence->surname = $request->surname;
-        $elicence->other_names = $request->other_names;
-        $elicence->address = $request->address;
-        $elicence->dob = $request->birth_date;
-        $elicence->nationality = $request->nationality;
-        $elicence->pob = $request->birth_place;
-        $elicence->nin = $request->document_id;
-        $elicence->telephone = $request->telephone;
-        $elicence->applicant_id = $request->applicant_id;
-        $elicence->conviction_details = $request->conviction_details;
-        $elicence->ever_convicted = $request->ever_convicted;
+        // $elicence->firstname = $request->first_name;
+        // $elicence->surname = $request->surname;
+        // $elicence->other_names = $request->other_names;
+        // $elicence->address = $request->address;
+        // $elicence->dob = $request->birth_date;
+        // $elicence->nationality = $request->nationality;
+        // $elicence->pob = $request->birth_place;
+        // $elicence->nin = $request->document_id;
+        // $elicence->telephone = $request->telephone;
+        // $elicence->applicant_id = $request->applicant_id;
+        // $elicence->conviction_details = $request->conviction_details;
+        // $elicence->ever_convicted = $request->ever_convicted;
 
-        $elicence->status = $request->status;
-        $elicence->progress = $request->progress;
-        $elicence->tracking_no = $request->tracking_no;
-        $elicence->stage = $request->stage;
+        // $elicence->status = $request->status;
+        // $elicence->progress = $request->progress;
+        // $elicence->tracking_no = $request->tracking_no;
+        // $elicence->stage = $request->stage;
 
-        $elicence->name = $request->name;
-        $elicence->email_address = $request->email_address;
-        $elicence->birth_place = $request->birth_place;
-        $elicence->application_type = $request->application_type;
-        $elicence->draft_type = $request->draft_type;
+        // $elicence->name = $request->name;
+        // $elicence->email_address = $request->email_address;
+        // $elicence->birth_place = $request->birth_place;
+        // $elicence->application_type = $request->application_type;
+        // $elicence->draft_type = $request->draft_type;
 
-        $elicence->user_picture = $request->user_picture;
-        $elicence->document_type = $request->document_type;
-        $elicence->document_id = $request->document_id;
+        // $elicence->user_picture = $request->user_picture;
+        // $elicence->document_type = $request->document_type;
+        // $elicence->document_id = $request->document_id;
 
-        $elicence->created_at = now();
-        $elicence->updated_at = now();
+        // $elicence->created_at = now();
+        // $elicence->updated_at = now();
 
-        $elicence->save();
+        // $elicence->save();
 
-        foreach ($request->education as $child) {
-            $sql = DB::table('elicence_education')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'qualification' => $child['qualification'],
-                    'institution' => $child['institution'],
-                    'summary' => $child['summary'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        // foreach ($request->education as $child) {
+        //     $sql = DB::table('elicence_education')->insert(
+        //         [
+        //             'parentID' => $elicence->id,
+        //             'start_date' => $child['start_date'],
+        //             'end_date' => $child['end_date'],
+        //             'qualification' => $child['qualification'],
+        //             'institution' => $child['institution'],
+        //             'summary' => $child['summary'],
+        //             'created_at' => now(),
+        //             'updated_at' =>  now(),
+        //         ]
+        //     );
+        // }
 
-        foreach ($request->sponsors as $child) {
-            $sql = DB::table('elicence_sponsors')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'sponsor_name' => $child['sponsor_name'],
-                    'registered' => $child['registered'],
-                    'registration_number' => $child['registration_number'],
-                    'discipline' => $child['discipline'],
-                    'progress' => $child['progress'],
-                    'status' => $child['status'],
-                    'email_address' => $child['email_address'],
-                    'user_id' => $child['user_id'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        // foreach ($request->sponsors as $child) {
+        //     $sql = DB::table('elicence_sponsors')->insert(
+        //         [
+        //             'parentID' => $elicence->id,
+        //             'sponsor_name' => $child['sponsor_name'],
+        //             'registered' => $child['registered'],
+        //             'registration_number' => $child['registration_number'],
+        //             'discipline' => $child['discipline'],
+        //             'progress' => $child['progress'],
+        //             'status' => $child['status'],
+        //             'email_address' => $child['email_address'],
+        //             'user_id' => $child['user_id'],
+        //             'created_at' => now(),
+        //             'updated_at' =>  now(),
+        //         ]
+        //     );
+        // }
 
-        foreach ($request->membership as $child) {
-            $sql = DB::table('elicence_membership')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'membership_name' => $child['membership_name'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        // foreach ($request->membership as $child) {
+        //     $sql = DB::table('elicence_membership')->insert(
+        //         [
+        //             'parentID' => $elicence->id,
+        //             'membership_name' => $child['membership_name'],
+        //             'created_at' => now(),
+        //             'updated_at' =>  now(),
+        //         ]
+        //     );
+        // }
 
-        foreach ($request->engineering as $child) {
-            $sql = DB::table('elicence_engineering')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'institution' => $child['institution'],
-                    'title' => $child['title'],
-                    'qualification' => $child['qualification'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        // foreach ($request->engineering as $child) {
+        //     $sql = DB::table('elicence_engineering')->insert(
+        //         [
+        //             'parentID' => $elicence->id,
+        //             'start_date' => $child['start_date'],
+        //             'institution' => $child['institution'],
+        //             'title' => $child['title'],
+        //             'qualification' => $child['qualification'],
+        //             'created_at' => now(),
+        //             'updated_at' =>  now(),
+        //         ]
+        //     );
+        // }
 
-        foreach ($request->positions as $child) {
-            $sql = DB::table('elicence_positions')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'title' => $child['title'],
-                    // 'summary' => $child['summary'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        // foreach ($request->positions as $child) {
+        //     $sql = DB::table('elicence_positions')->insert(
+        //         [
+        //             'parentID' => $elicence->id,
+        //             'start_date' => $child['start_date'],
+        //             'end_date' => $child['end_date'],
+        //             'organisation' => $child['organisation'],
+        //             'cadre' => $child['cadre'],
+        //             'title' => $child['title'],
+        //             // 'summary' => $child['summary'],
+        //             'created_at' => now(),
+        //             'updated_at' =>  now(),
+        //         ]
+        //     );
+        // }
 
 
-        foreach ($request->practicals as $child) {
-            $sql = DB::table('elicence_practicals')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'title' => $child['title'],
-                    // 'summary' => $child['summary'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
+        // foreach ($request->practicals as $child) {
+        //     $sql = DB::table('elicence_practicals')->insert(
+        //         [
+        //             'parentID' => $elicence->id,
+        //             'start_date' => $child['start_date'],
+        //             'end_date' => $child['end_date'],
+        //             'organisation' => $child['organisation'],
+        //             'cadre' => $child['cadre'],
+        //             'title' => $child['title'],
+        //             // 'summary' => $child['summary'],
+        //             'created_at' => now(),
+        //             'updated_at' =>  now(),
+        //         ]
+        //     );
+        // }
 
         // $payment = new Payment;
         // $payment->mode = "MOBILE";
@@ -585,14 +585,179 @@ class EngineersController extends Controller
         // $payment->created_by = $request->applicant_id;
         // $payment->save();
 
-        $payment_id = $this->makePayment( $elicence->id, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system,  );
+        $updated = DB::table('elicence')
+            ->where('id', $request->applicationID )
+            ->update([
+                'type' => $request->type,
+                'profession' => $request->profession,
+                'sponsor_score' => $request->sponsor_score,
+                'category' => $request->category,
+                'draft_type' => $request->draft_type,
+                'firstname' => $request->firstname,
+                'surname' => $request->surname,
+                'other_names' => $request->other_names,
+                'address' => $request->address,
+                'dob' => $request->birth_date,
+                'nationality' => $request->nationality,
+                'pob' => $request->birth_place,
+                'nin' => $request->document_id,
+                'telephone' => $request->telephone,
+                'applicant_id' => $request->applicant_id,
+                'ever_convicted' => $request->ever_convicted,
+                'conviction_details' => $request->conviction_details,
+                'status' => $request->status,
+                'applicant_id' => $request->applicant_id,
+                'progress' => $request->progress,
+                'tracking_no' => $request->tracking_no,
+                'stage' => $request->stage,
+                'name' => $request->name,
+                'application_type' => $request->application_type,
+                'user_picture' => $request->user_picture,
+                'document_type' => $request->document_type,
+                'document_id' => $request->document_id,
+                'updated_at' => now(),
+            ]);
 
-        return response()->json([
-            "success" => true,
-            "id" => $elicence->id,
-            "payment_id" => $payment_id,
-            "message" => "Licence Application has been created successfully."
-        ]);
+
+        //other tables
+        if( !is_null( $request->education ) ) {
+            DB::delete('DELETE FROM elicence_education WHERE parentID = ?', [ $request->applicationID ]);
+
+            foreach ($request->education as $child) {
+            $sql = DB::table('elicence_education')->insert(
+                [
+                    'parentID' => $request->applicationID,
+                    'start_date' => $child['start_date'],
+                    'end_date' => $child['end_date'],
+                    'qualification' => $child['qualification'],
+                    'institution' => $child['institution'],
+                    'summary' => $child['summary'],
+                    'created_at' => now(),
+                    'updated_at' =>  now(),
+                ]
+            );
+            }
+        }
+
+        if( !is_null( $request->sponsors ) ) {
+            DB::delete('DELETE FROM elicence_sponsors WHERE parentID = ?', [ $request->applicationID ]);
+
+            foreach ($request->sponsors as $child) {
+            $sql = DB::table('elicence_sponsors')->insert(
+                [
+                    'parentID' => $request->applicationID,
+                    'sponsor_name' => $child['sponsor_name'],
+                    'registered' => $child['registered'],
+                    'registration_number' => $child['registration_number'],
+                    'discipline' => $child['discipline'],
+                    'progress' => $child['progress'],
+                    'status' => $child['status'],
+                    'email_address' => $child['email_address'],
+                    'user_id' => $child['user_id'],
+                    'created_at' => now(),
+                    'updated_at' =>  now(),
+                ]
+            );
+            }
+        }
+
+        if( !is_null( $request->membership ) ) {
+            DB::delete('DELETE FROM elicence_membership WHERE parentID = ?', [ $request->applicationID ]);
+
+            foreach ($request->membership as $child) {
+                $sql = DB::table('elicence_membership')->insert(
+                    [
+                        'parentID' => $request->applicationID,
+                        'membership_name' => $child['membership_name'],
+                        'summary' => $child['summary'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
+        }
+
+
+        if( !is_null( $request->engineering ) ) {
+            DB::delete('DELETE FROM elicence_engineering WHERE parentID = ?', [ $request->applicationID ]);
+
+            foreach ($request->engineering as $child) {
+                $sql = DB::table('elicence_engineering')->insert(
+                    [
+                        'parentID' => $request->applicationID,
+                        'start_date' => $child['start_date'],
+                        'institution' => $child['institution'],
+                        'summary' => $child['summary'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
+        }
+
+        if( !is_null( $request->positions ) ) {
+            DB::delete('DELETE FROM elicence_positions WHERE parentID = ?', [ $request->applicationID ]);
+
+            foreach ($request->positions as $child) {
+            $sql = DB::table('elicence_positions')->insert(
+                [
+                    'parentID' => $request->applicationID,
+                    'start_date' => $child['start_date'],
+                    'end_date' => $child['end_date'],
+                    'organisation' => $child['organisation'],
+                    'cadre' => $child['cadre'],
+                    'summary' => $child['summary'],
+                    'created_at' => now(),
+                    'updated_at' =>  now(),
+                ]
+            );
+        }
+        }
+
+        if( !is_null( $request->practicals ) ) {
+            DB::delete('DELETE FROM elicence_practicals WHERE parentID = ?', [ $request->applicationID ]);
+            
+            foreach ($request->practicals as $child) {
+                $sql = DB::table('elicence_practicals')->insert(
+                    [
+                        'parentID' => $request->applicationID,
+                        'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
+                        'organisation' => $child['organisation'],
+                        'cadre' => $child['cadre'],
+                        'summary' => $child['summary'],
+                        'created_at' => now(),
+                        'updated_at' =>  now(),
+                    ]
+                );
+            }
+        }
+
+         $payment_id = $this->makePayment( $elicence->id, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system,  );
+        
+        if ($updated) {
+            $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
+
+            return response()->json([
+                'message' => 'License updated successfully',
+                'licence' => $licence,
+                "payment_id" => $payment_id
+            ]);
+        } 
+        else {
+            return response()->json([
+                'message' => 'License not found or no changes made',
+            ], 404);
+        }
+
+       
+
+        // return response()->json([
+        //     "success" => true,
+        //     "id" => $elicence->id,
+        //     "payment_id" => $payment_id,
+        //     "message" => "Licence Application has been created successfully."
+        // ]);
     }
 
     public function fetchRegister( Request $request ) {
