@@ -733,7 +733,7 @@ class EngineersController extends Controller
             }
         }
 
-         $payment_id = $this->makePayment( $elicence->id, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system,  );
+         $payment_id = $this->makePayment( $request->applicationID, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system,  );
         
         if ($updated) {
             $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
