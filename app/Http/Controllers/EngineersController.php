@@ -362,6 +362,7 @@ class EngineersController extends Controller
                     [
                         'parentID' => $request->applicationID,
                         'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
                         'institution' => $child['institution'],
                         'summary' => $child['summary'],
                         'created_at' => now(),
@@ -635,7 +636,7 @@ class EngineersController extends Controller
                     'created_at' => now(),
                     'updated_at' =>  now(),
                 ]
-            );
+             );
             }
         }
 
@@ -686,6 +687,7 @@ class EngineersController extends Controller
                     [
                         'parentID' => $request->applicationID,
                         'start_date' => $child['start_date'],
+                        'end_date' => $child['end_date'],
                         'institution' => $child['institution'],
                         'summary' => $child['summary'],
                         'created_at' => now(),
