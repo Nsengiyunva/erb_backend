@@ -833,6 +833,14 @@ class EngineersController extends Controller
         ] );
     }
 
+    public function fetchAccountLicenses( $user_id ) {
+        $applications = ELicence::where('applicant_id', $user_id )->get();
+        return response()->json( [
+            "success" => true,
+            "records" => $applications
+        ] );
+    }
+
     public function getLicenceById($id)
     {
         $main = ELicence::where("id", $id)->first();
