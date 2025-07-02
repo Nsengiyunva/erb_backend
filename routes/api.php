@@ -40,6 +40,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::get("/payments/{id}",[PaymentsController::class, 'show'] );
   Route::get("/payments",[PaymentsController::class, 'fetchAllPayments'] );
   Route::post( "send-email-notification", [ EngineersController::class, 'sendmail'] );
+  Route::get( "check-licenses/{user_id}", [ EngineersController::class, 'checkLicenses' ] );
   
   Route::post('send-otp', [ OTPController::class, 'sendOTP' ]);
   Route::post('verify-otp', [ OTPController::class, 'verifyOTP' ]);
