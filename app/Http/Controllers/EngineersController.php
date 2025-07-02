@@ -834,7 +834,7 @@ class EngineersController extends Controller
     }
 
     public function checkLicenses( $user_id ) {
-        $records = Licence::where('applicant_id', $user_id )->get();
+        $records = ELicence::where('applicant_id', $user_id )->get();
         return response()->json( [
             "success" => true,
             "records" => $records
