@@ -426,165 +426,6 @@ class EngineersController extends Controller
     }
 
     public function storeLicence(Request $request) {
-        // $elicence = new ELicence;
-        
-        // $elicence = new ELicence;
-
-        // $elicence->type = $request->type;
-        // $elicence->profession = $request->profession;
-        // $elicence->sponsor_score = $request->sponsor_score;
-        // $elicence->category = $request->category;
-        // $elicence->draft_type = $request->draft_type;
-
-        // $elicence->firstname = $request->first_name;
-        // $elicence->surname = $request->surname;
-        // $elicence->other_names = $request->other_names;
-        // $elicence->address = $request->address;
-        // $elicence->dob = $request->birth_date;
-        // $elicence->nationality = $request->nationality;
-        // $elicence->pob = $request->birth_place;
-        // $elicence->nin = $request->document_id;
-        // $elicence->telephone = $request->telephone;
-        // $elicence->applicant_id = $request->applicant_id;
-        // $elicence->conviction_details = $request->conviction_details;
-        // $elicence->ever_convicted = $request->ever_convicted;
-
-        // $elicence->status = $request->status;
-        // $elicence->progress = $request->progress;
-        // $elicence->tracking_no = $request->tracking_no;
-        // $elicence->stage = $request->stage;
-
-        // $elicence->name = $request->name;
-        // $elicence->email_address = $request->email_address;
-        // $elicence->birth_place = $request->birth_place;
-        // $elicence->application_type = $request->application_type;
-        // $elicence->draft_type = $request->draft_type;
-
-        // $elicence->user_picture = $request->user_picture;
-        // $elicence->document_type = $request->document_type;
-        // $elicence->document_id = $request->document_id;
-
-        // $elicence->created_at = now();
-        // $elicence->updated_at = now();
-
-        // $elicence->save();
-
-        // foreach ($request->education as $child) {
-        //     $sql = DB::table('elicence_education')->insert(
-        //         [
-        //             'parentID' => $elicence->id,
-        //             'start_date' => $child['start_date'],
-        //             'end_date' => $child['end_date'],
-        //             'qualification' => $child['qualification'],
-        //             'institution' => $child['institution'],
-        //             'summary' => $child['summary'],
-        //             'created_at' => now(),
-        //             'updated_at' =>  now(),
-        //         ]
-        //     );
-        // }
-
-        // foreach ($request->sponsors as $child) {
-        //     $sql = DB::table('elicence_sponsors')->insert(
-        //         [
-        //             'parentID' => $elicence->id,
-        //             'sponsor_name' => $child['sponsor_name'],
-        //             'registered' => $child['registered'],
-        //             'registration_number' => $child['registration_number'],
-        //             'discipline' => $child['discipline'],
-        //             'progress' => $child['progress'],
-        //             'status' => $child['status'],
-        //             'email_address' => $child['email_address'],
-        //             'user_id' => $child['user_id'],
-        //             'created_at' => now(),
-        //             'updated_at' =>  now(),
-        //         ]
-        //     );
-        // }
-
-        // foreach ($request->membership as $child) {
-        //     $sql = DB::table('elicence_membership')->insert(
-        //         [
-        //             'parentID' => $elicence->id,
-        //             'membership_name' => $child['membership_name'],
-        //             'created_at' => now(),
-        //             'updated_at' =>  now(),
-        //         ]
-        //     );
-        // }
-
-        // foreach ($request->engineering as $child) {
-        //     $sql = DB::table('elicence_engineering')->insert(
-        //         [
-        //             'parentID' => $elicence->id,
-        //             'start_date' => $child['start_date'],
-        //             'institution' => $child['institution'],
-        //             'title' => $child['title'],
-        //             'qualification' => $child['qualification'],
-        //             'created_at' => now(),
-        //             'updated_at' =>  now(),
-        //         ]
-        //     );
-        // }
-
-        // foreach ($request->positions as $child) {
-        //     $sql = DB::table('elicence_positions')->insert(
-        //         [
-        //             'parentID' => $elicence->id,
-        //             'start_date' => $child['start_date'],
-        //             'end_date' => $child['end_date'],
-        //             'organisation' => $child['organisation'],
-        //             'cadre' => $child['cadre'],
-        //             'title' => $child['title'],
-        //             // 'summary' => $child['summary'],
-        //             'created_at' => now(),
-        //             'updated_at' =>  now(),
-        //         ]
-        //     );
-        // }
-
-
-        // foreach ($request->practicals as $child) {
-        //     $sql = DB::table('elicence_practicals')->insert(
-        //         [
-        //             'parentID' => $elicence->id,
-        //             'start_date' => $child['start_date'],
-        //             'end_date' => $child['end_date'],
-        //             'organisation' => $child['organisation'],
-        //             'cadre' => $child['cadre'],
-        //             'title' => $child['title'],
-        //             // 'summary' => $child['summary'],
-        //             'created_at' => now(),
-        //             'updated_at' =>  now(),
-        //         ]
-        //     );
-        // }
-
-        // $payment = new Payment;
-        // $payment->mode = "MOBILE";
-        // $this->erbPay->setPayment($payment);
-        // $payment->phone_no = $request->input("payment_phone_no");
-
-        // //0701234110
-        // $this->erbPay->pay( [
-        //     "phone_no" => "0773917523",
-        //     "source_system" => "MTN",
-        //     "amount" => 500,
-        //     "narrative" => "ERB Payment Status",
-        //     "sent_from" => "Isaac"
-        // ] );
-
-        // // $this->erbPay->pay( [
-        // //     "phone_no":"0773917523",
-        // //     "amount": 500,
-        // //     "narrative":"ERB Test Payment",
-        // //     "sent_from":"Isaac King",
-        // //     "source_system":"MTN"
-        // // ] );
-        
-        // $payment->elicense_id = $elicence->id;
-        // $payment->created_by = $request->applicant_id;
-        // $payment->save();
 
         $updated = DB::table('elicence')
             ->where('id', $request->applicationID )
@@ -713,7 +554,7 @@ class EngineersController extends Controller
                     'updated_at' =>  now(),
                 ]
             );
-        }
+         }
         }
 
         if( !is_null( $request->practicals ) ) {
@@ -735,7 +576,7 @@ class EngineersController extends Controller
             }
         }
 
-         $payment_id = $this->makePayment( $request->applicationID, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system,  );
+         $payment_id = $this->makePayment( $request->applicationID, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system );
         
         if ($updated) {
             $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
@@ -751,15 +592,6 @@ class EngineersController extends Controller
                 'message' => 'License not found or no changes made',
             ], 404);
         }
-
-       
-
-        // return response()->json([
-        //     "success" => true,
-        //     "id" => $elicence->id,
-        //     "payment_id" => $payment_id,
-        //     "message" => "Licence Application has been created successfully."
-        // ]);
     }
 
     public function fetchRegister( Request $request ) {
@@ -826,23 +658,24 @@ class EngineersController extends Controller
 
     public function getLicences()
     {
-        $records = ELicence::all();
+        $applications = ELicence::all();
         return response()->json( [
             "success" => true,
-            "records" => $records
+            "records" => $applications
         ] );
     }
 
     public function checkLicenses( $user_id ) {
-        $records = ELicence::where('applicant_id', $user_id )->get();
+        $applications = ELicence::where('applicant_id', $user_id )->get();
         return response()->json( [
             "success" => true,
-            "records" => $records
+            "records" => $applications
         ] );
     }
 
     public function fetchAccountLicenses( $user_id ) {
-        $applications = ELicence::where('applicant_id', $user_id )->where('draft_type', 'COMPLETED')->get();
+        $applications = ELicence::where('applicant_id', $user_id )->where('draft_type', 'COMPLETE')->get();
+        
         return response()->json( [
             "success" => true,
             "records" => $applications
@@ -923,114 +756,104 @@ class EngineersController extends Controller
 
     public function storeUser(Request $request)
     {
-        //check if the registered is present 
-            if( $request->registered = "No" ) {
-                $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%'";
-                $record = DB::select( $sql );   
+        if( $request->registered = "No" ) {
+            $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%'";
+            $record = DB::select( $sql );   
 
-                if( !empty( $record )  ) {
-                    return response()->json( [
-                        "success" => true,
-                        "result" => 1,
-                        "message" => "Account has already been created with this Email Address ".$request->email.". Email Address already exists in the database."
-                    ] );
-                }
-                else {
-                    $user = new ELicenceUser;
-    
-                    $user->type = $request->type;
-                    $user->name = $request->name;
-                    $user->first_name = $request->first_name;
-                    $user->surname = $request->surname;
-                    $user->other_names = $request->other_names;
-                    $user->telephone = $request->telephone;
-                    $user->email = $request->email;
-                    $user->birth_place = $request->birth_place;
-                    $user->dob = $request->birth_date;
-                    $user->gender = $request->gender;
-                    $user->company_name = $request->company_name;
-                    $user->address = $request->address;
-                    $user->status = $request->status;
-                    $user->user_type = $request->user_type;
-                    $user->password = $request->password;
-                    $user->country = $request->country;
-                    $user->registered = $request->registered;
-                    $user->category = $request->category;
-                    $user->licence_no = $request->licence_no;
-                    $user->address = $request->address;
-                    $user->user_picture = $request->user_picture;
-    
-                    $user->created_at = now();
-                    $user->updated_at = now();
-                    $user->save();
-    
-                    return response()->json([
-                        "success" => true,
-                        "result" => 0,
-                        "message" => "Account has been created successfully."
-                    ]);
-                }
-
-
+            if( !empty( $record )  ) {
+                return response()->json( [
+                    "success" => true,
+                    "result" => 1,
+                    "message" => "Account has already been created with this Email Address ".$request->email.". Email Address already exists in the database."
+                ] );
             }
             else {
-                $sql = "SELECT DISTINCT * FROM elicence_user WHERE licence_no LIKE '%".$request->licence_no."%'";
-                $record = DB::select( $sql );
+                $user = new ELicenceUser;
 
+                $user->type = $request->type;
+                $user->name = $request->name;
+                $user->first_name = $request->first_name;
+                $user->surname = $request->surname;
+                $user->other_names = $request->other_names;
+                $user->telephone = $request->telephone;
+                $user->email = $request->email;
+                $user->birth_place = $request->birth_place;
+                $user->dob = $request->birth_date;
+                $user->gender = $request->gender;
+                $user->company_name = $request->company_name;
+                $user->address = $request->address;
+                $user->status = $request->status;
+                $user->user_type = $request->user_type;
+                $user->password = $request->password;
+                $user->country = $request->country;
+                $user->registered = $request->registered;
+                $user->category = $request->category;
+                $user->licence_no = $request->licence_no;
+                $user->user_picture = $request->user_picture;
 
-                if( !empty( $record )  ) {
-                    return response()->json( [
-                        "success" => true,
-                        "result" => 1,
-                        "message" => "Account has already been created with this registration number ".$request->licence_no.". Registration Number already exists in the database."
-                    ] );
-                }
-                else {
-                    $user = new ELicenceUser;
-    
-                    $user->type = $request->type;
-                    $user->name = $request->name;
-                    $user->first_name = $request->first_name;
-                    $user->surname = $request->surname;
-                    $user->other_names = $request->other_names;
-                    $user->telephone = $request->telephone;
-                    $user->email = $request->email;
-                    $user->birth_place = $request->birth_place;
-                    $user->dob = $request->birth_date;
-                    $user->gender = $request->gender;
-                    $user->company_name = $request->company_name;
-                    $user->address = $request->address;
-                    $user->status = $request->status;
-                    $user->user_type = $request->user_type;
-                    $user->password = $request->password;
-                    $user->country = $request->country;
-                    $user->registered = $request->registered;
-                    $user->category = $request->category;
-                    $user->licence_no = $request->licence_no;
-                    $user->address = $request->address;
-                    $user->user_picture = $request->user_picture;
-    
-                    $user->created_at = now();
-                    $user->updated_at = now();
-                    $user->save();
-    
-                    return response()->json([
-                        "success" => true,
-                        "result" => 0,
-                        "message" => "Account has been created successfully."
-                    ]);
-                }
+                $user->created_at = now();
+                $user->updated_at = now();
+                $user->save();
 
-
+                return response()->json([
+                    "success" => true,
+                    "result" => 0,
+                    "message" => "Account has been created successfully."
+                ]);
             }
-        
-            
-            
+        }
+        else {
+            $sql = "SELECT DISTINCT * FROM elicence_user WHERE licence_no LIKE '%".$request->licence_no."%'";
+            $record = DB::select( $sql );
+
+
+            if( !empty( $record )  ) {
+                return response()->json( [
+                    "success" => true,
+                    "result" => 1,
+                    "message" => "Account has already been created with this registration number ".$request->licence_no.". Registration Number already exists in the database."
+                ] );
+            }
+            else {
+                $user = new ELicenceUser;
+
+                $user->type = $request->type;
+                $user->name = $request->name;
+                $user->first_name = $request->first_name;
+                $user->surname = $request->surname;
+                $user->other_names = $request->other_names;
+                $user->telephone = $request->telephone;
+                $user->email = $request->email;
+                $user->birth_place = $request->birth_place;
+                $user->dob = $request->birth_date;
+                $user->gender = $request->gender;
+                $user->company_name = $request->company_name;
+                $user->address = $request->address;
+                $user->status = $request->status;
+                $user->user_type = $request->user_type;
+                $user->password = $request->password;
+                $user->country = $request->country;
+                $user->registered = $request->registered;
+                $user->category = $request->category;
+                $user->licence_no = $request->licence_no;
+                $user->user_picture = $request->user_picture;
+
+                $user->created_at = now();
+                $user->updated_at = now();
+                $user->save();
+
+                return response()->json([
+                    "success" => true,
+                    "result" => 0,
+                    "message" => "Account has been created successfully."
+                ]);
+            }
+        }       
     }
 
     public function loginUser(Request $request)
     {
-        $sql = "select distinct * from elicence_user where email like '%" . $request->email . "%' and status = 'APPROVED'";
+        $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%' AND STATUS = 'APPROVED'";
         $record = DB::select($sql);
         
         return response()->json( [
@@ -1039,10 +862,10 @@ class EngineersController extends Controller
         ] );
     }
 
-    public function getLicenceRemarks($licenceId)
+    public function getLicenceRemarks( $licenceId )
     {
-        $results =  ELicenceApprover::where( "licence_application_id", $licenceId)->get();
-        return response()->json([
+        $results =  ELicenceApprover::where( "licence_application_id", $licenceId )->get();
+        return response()->json( [
             "success" => true,
             "record" => $results
         ] );
