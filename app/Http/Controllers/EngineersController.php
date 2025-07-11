@@ -43,7 +43,7 @@ class EngineersController extends Controller
         ] );
     }
 
-    public function makePayment( $application_id, $applicant_id, $phone_number, $source = "MTN", $narrative = "Payment for application fees", $person = "ERB"  ){
+    public function makePayment( $application_id, $applicant_id, $phone_number, $source = "MTN", $narrative = "Payment for application fees", $person = "ERB", $amount  ){
         $payment = new Payment;
 
         $this->erbPay->setPayment($payment);
@@ -55,7 +55,7 @@ class EngineersController extends Controller
         $this->erbPay->pay( [
             "phone_no" => $phone_number,
             "source_system" => $source,
-            "amount" => 500,
+            "amount" => $amount,
             "narrative" => $narrative,
             "sent_from" => $person
         ] );
@@ -576,7 +576,7 @@ class EngineersController extends Controller
             }
         }
 
-         $payment_id = $this->makePayment( $request->applicationID, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system );
+         $payment_id = $this->makePayment( $request->applicationID, $request->applicant_id, $request->payment_phone_no, $request->payment_source_system, $request->amount );
         
         if ($updated) {
             $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
