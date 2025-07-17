@@ -20,10 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function ($router) {
-  Route::post('test', [EngineersController::class, "sendmail" ] );   
+  // Route::post('test', [EngineersController::class, "sendmail" ] );   
   
   Route::post( "erb_loginUser", [EngineersController::class, 'loginUser'] );
-  Route::post( "erb_storeUser", [EngineersController::class, 'storeUser'] );
+
+  //register user
+  Route::post( "register-user", [EngineersController::class, 'storeUser'] );
+
   Route::get( "getAllUsers", [EngineersController::class, 'getAllUsers'] );
   Route::post( "erb_storeLicence", [EngineersController::class, 'storeLicence'] );
   Route::get(  "erb_getLicences", [EngineersController::class, 'getLicences'] );
@@ -51,10 +54,18 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::get( "get-drafts/{email}", [EngineersController::class, "fetchDraftsByEmail"] );
   Route::post( "fetch-drafts-by-id", [EngineersController::class, "getDraftsById" ] );
   Route::put( "update-draft", [EngineersController::class, "updateDraft" ] );
+
+  Router::get( "get-registered-engineers", [ EngineerController::class, "getRegisteredEngineers" ] );
+  Router::post( "is-engineer-authenticated", [ EngineerController::class, "isEngineerAuthenticated" ] );
+  
+  //submit an application
+  // Router::get( "get-registered-engineers", [ EngineerController::class, "getRegisteredEngineers" ] );
+
+  //generate certificate
+  // Router::get( "get-registered-engineers", [ EngineerController::class, "getRegisteredEngineers" ] );
 } );
 
 Route::post("/payments/callback",[PaymentsController::class, 'callback'] )->name("payments.callback");
-
 
 
 

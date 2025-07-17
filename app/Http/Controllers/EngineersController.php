@@ -594,8 +594,25 @@ class EngineersController extends Controller
         }
     }
 
-    public function fetchRegister( Request $request ) {
-        
+    public function getRegisteredEngineers() {
+        $sql = ELicenceUser::select('country as country_name', 'licence_no as license_number')->where( "registered", "Yes" )->get();
+        if( empty( $sql ) ) {
+            return response()->json(['message' => 'No results were found.'], 404);
+        }
+        return response()->json( $sql );
+    }
+
+    public function isEngineerAuthenticated( Request $request ) {
+        $sql =  ELicenceUser::where( "email", $request->user_name )->where( "password", $request->password )->first();
+        if( empty( $sql ) ) {
+            return response()->json([
+                'message' => 'Engineer was not found in the databaase and maybe not registered yet.'
+            ], 404);
+        }
+        return response()->json( [
+            "is_authenticated": true,
+            "result": $sql
+        ], 200 );
     }
 
     public function fetchErbEngineers( $category ) {
@@ -773,9 +790,12 @@ class EngineersController extends Controller
                 $user->type = $request->type;
                 $user->name = $request->name;
                 $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name; //add
                 $user->surname = $request->surname;
                 $user->other_names = $request->other_names;
                 $user->telephone = $request->telephone;
+                $user->phone_no = $request->phone_no; //add
+                $user->origin_license_no = $request->origin_license_no; //add
                 $user->email = $request->email;
                 $user->birth_place = $request->birth_place;
                 $user->dob = $request->birth_date;
