@@ -56,7 +56,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::put( "update-draft", [EngineersController::class, "updateDraft" ] );
 
   Route::get( "get-registered-engineers", [ EngineerController::class, "getRegisteredEngineers" ] );
-  Router::post( "is-engineer-authenticated", [ EngineerController::class, "isEngineerAuthenticated" ] );
+  Route::post( "is-engineer-authenticated", [ EngineerController::class, "isEngineerAuthenticated" ] );
   
   //submit an application
   // Router::get( "get-registered-engineers", [ EngineerController::class, "getRegisteredEngineers" ] );
