@@ -604,13 +604,14 @@ class EngineersController extends Controller
 
     public function isEngineerAuthenticated( Request $request ) {
         $sql =  ELicenceUser::where( "email", $request->user_name )->where( "password", $request->password )->first();
-        // if( empty( $sql ) ) {
-        //     return response()->json([
-        //         'message' => 'Engineer was not found in the databaase and maybe not registered yet.'
-        //     ], 404);
-        // }
+        if( empty( $sql ) ) {
+            return response()->json([
+                'message' => 'Engineer was not found in the databaase and maybe not registered yet.'
+            ], 404);
+        }
         return response()->json( [
-            "result": $sql
+            "is_autheticated" => true,
+            "result" => $sql
         ] );
     }
 
