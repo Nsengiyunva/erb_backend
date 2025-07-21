@@ -871,10 +871,10 @@ class EngineersController extends Controller
         //     }
         // }    
         $allData = $request->all();
-        dd($allData); // dumps 
-        // return response()->json( [
-        //     "here" => $request->first_name
-        // ] );   
+        // dd($allData); // dumps 
+        return response()->json( [
+            "here" => $allData
+        ] );   
     }
 
     public function loginUser(Request $request)
