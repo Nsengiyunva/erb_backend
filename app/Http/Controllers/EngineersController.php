@@ -870,9 +870,9 @@ class EngineersController extends Controller
         //         ]);
         //     }
         // }    
-        var_dump( $request->first_name );
+        $name = $request->first_name;
         return response()->json( [
-            "here" => "Masasu"
+            "here" => $name
         ] );   
     }
 
