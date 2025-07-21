@@ -773,111 +773,103 @@ class EngineersController extends Controller
     }
 
     public function storeUser(Request $request){
-        // if( $request->registered = "No" ) {
-        //     $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%'";
-        //     $record = DB::select( $sql );   
+        if( $request->registered == "No" ) {
+            $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%'";
+            $record = DB::select( $sql );   
 
-        //     if( !empty( $record )  ) {
-        //         return response()->json( [
-        //             "success" => true,
-        //             "result" => 1,
-        //             "message" => "Account has already been created with this Email Address ".$request->email.". Email Address already exists in the database."
-        //         ] );
-        //     }
-        //     else {
-        //         // $user = new ELicenceUser;
+            if( !empty( $record )  ) {
+                return response()->json( [
+                    "success" => true,
+                    "result" => 1,
+                    "message" => "Account has already been created with this Email Address ".$request->email.". Email Address already exists in the database."
+                ] );
+            }
+            else {
+                $user = new ELicenceUser;
 
-        //         // $user->type = $request->type;
-        //         // $user->name = $request->name;
-        //         // $user->first_name = $request->first_name;
-        //         // $user->last_name = $request->last_name; //add
-        //         // $user->surname = $request->surname;
-        //         // $user->other_names = $request->other_names;
-        //         // $user->telephone = $request->telephone;
-        //         // $user->phone_no = $request->phone_no; //add
-        //         // $user->origin_license_no = $request->origin_license_no; //add
-        //         // $user->email = $request->email;
-        //         // $user->birth_place = $request->birth_place;
-        //         // $user->dob = $request->birth_date;
-        //         // $user->gender = $request->gender;
-        //         // $user->company_name = $request->company_name;
-        //         // $user->address = $request->address;
-        //         // $user->status = $request->status;
-        //         // $user->user_type = $request->user_type;
-        //         // $user->password = $request->password;
-        //         // $user->country = $request->country;
-        //         // $user->registered = $request->registered;
-        //         // $user->category = $request->category;
-        //         // $user->licence_no = $request->licence_no;
-        //         // $user->user_picture = $request->user_picture;
+                $user->type = $request->type;
+                $user->name = $request->name;
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name; //add
+                $user->surname = $request->surname;
+                $user->other_names = $request->other_names;
+                $user->telephone = $request->telephone;
+                $user->phone_no = $request->phone_no; //add
+                $user->origin_license_no = $request->origin_license_no; //add
+                $user->email = $request->email;
+                $user->birth_place = $request->birth_place;
+                $user->dob = $request->birth_date;
+                $user->gender = $request->gender;
+                $user->company_name = $request->company_name;
+                $user->address = $request->address;
+                $user->status = $request->status;
+                $user->user_type = $request->user_type;
+                $user->password = $request->password;
+                $user->country = $request->country;
+                $user->registered = $request->registered;
+                $user->category = $request->category;
+                $user->licence_no = $request->licence_no;
+                $user->user_picture = $request->user_picture;
 
-        //         // $user->created_at = now();
-        //         // $user->updated_at = now();
-        //         // $user->save();
+                $user->created_at = now();
+                $user->updated_at = now();
+                $user->save();
 
-        //         // return response()->json([
-        //         //     "success" => true,
-        //         //     "result" => 0,
-        //         //     "message" => "Account has been created successfully."
-        //         // ]);
-
+                return response()->json([
+                    "success" => true,
+                    "result" => 0,
+                    "message" => "Account has been created successfully."
+                ]);
                
-        //     // }
-        // }
-        // else {
-        //     $sql = "SELECT DISTINCT * FROM elicence_user WHERE licence_no LIKE '%".$request->licence_no."%'";
-        //     $record = DB::select( $sql );
+            }
+        }
+        else {
+            $sql = "SELECT DISTINCT * FROM elicence_user WHERE licence_no LIKE '%".$request->licence_no."%'";
+            $record = DB::select( $sql );
 
 
-        //     if( !empty( $record )  ) {
-        //         return response()->json( [
-        //             "success" => true,
-        //             "result" => 1,
-        //             "message" => "Account has already been created with this registration number ".$request->licence_no.". Registration Number already exists in the database."
-        //         ] );
-        //     }
-        //     else {
-        //         $user = new ELicenceUser;
+            if( !empty( $record )  ) {
+                return response()->json( [
+                    "success" => true,
+                    "result" => 1,
+                    "message" => "Account has already been created with this registration number ".$request->licence_no.". Registration Number already exists in the database."
+                ] );
+            }
+            else {
+                $user = new ELicenceUser;
 
-        //         $user->type = $request->type;
-        //         $user->name = $request->name;
-        //         $user->first_name = $request->first_name;
-        //         $user->surname = $request->surname;
-        //         $user->other_names = $request->other_names;
-        //         $user->telephone = $request->telephone;
-        //         $user->email = $request->email;
-        //         $user->birth_place = $request->birth_place;
-        //         $user->dob = $request->birth_date;
-        //         $user->gender = $request->gender;
-        //         $user->company_name = $request->company_name;
-        //         $user->address = $request->address;
-        //         $user->status = $request->status;
-        //         $user->user_type = $request->user_type;
-        //         $user->password = $request->password;
-        //         $user->country = $request->country;
-        //         $user->registered = $request->registered;
-        //         $user->category = $request->category;
-        //         $user->licence_no = $request->licence_no;
-        //         $user->user_picture = $request->user_picture;
+                $user->type = $request->type;
+                $user->name = $request->name;
+                $user->first_name = $request->first_name;
+                $user->surname = $request->surname;
+                $user->other_names = $request->other_names;
+                $user->telephone = $request->telephone;
+                $user->email = $request->email;
+                $user->birth_place = $request->birth_place;
+                $user->dob = $request->birth_date;
+                $user->gender = $request->gender;
+                $user->company_name = $request->company_name;
+                $user->address = $request->address;
+                $user->status = $request->status;
+                $user->user_type = $request->user_type;
+                $user->password = $request->password;
+                $user->country = $request->country;
+                $user->registered = $request->registered;
+                $user->category = $request->category;
+                $user->licence_no = $request->licence_no;
+                $user->user_picture = $request->user_picture;
 
-        //         $user->created_at = now();
-        //         $user->updated_at = now();
-        //         $user->save();
+                $user->created_at = now();
+                $user->updated_at = now();
+                $user->save();
 
-        //         return response()->json([
-        //             "success" => true,
-        //             "result" => 0,
-        //             "message" => "Account has been created successfully."
-        //         ]);
-        //     }
-        // }    
-       $firstName = $request->input('first_name');
-       $email = $request->input('email');
-
-       return response()->json( [
-            "success" => true,
-            "record" => $firstName
-        ] ); 
+                return response()->json([
+                    "success" => true,
+                    "result" => 0,
+                    "message" => "Account has been created successfully."
+                ]);
+            }
+        }  
     }
 
     public function loginUser(Request $request)
