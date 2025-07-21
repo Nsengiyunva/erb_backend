@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 use App\Models\ELicence;
 use App\Models\ELicenceUser;
 use App\Models\EApprover;
@@ -870,10 +871,7 @@ class EngineersController extends Controller
         //         ]);
         //     }
         // }    
-        $name = $request->input('first_name');
-        return response()->json( [
-            "here" => $name
-        ] );   
+       Log::info('Payload:', $request->all());
     }
 
     public function loginUser(Request $request)
