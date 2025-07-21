@@ -871,7 +871,7 @@ class EngineersController extends Controller
         //     }
         // }    
         return response()->json( [
-            "success" => "we are testing"
+            "success" => $request->registered
         ] );   
     }
 
