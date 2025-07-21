@@ -871,7 +871,13 @@ class EngineersController extends Controller
         //         ]);
         //     }
         // }    
-       Log::info('Payload:', $request->all());
+       $firstName = $request->input('first_name');
+       $email = $request->input('email');
+
+       return response()->json( [
+            "success" => true,
+            "record" => $firstName
+        ] ); 
     }
 
     public function loginUser(Request $request)
