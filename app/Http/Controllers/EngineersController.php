@@ -34,6 +34,24 @@ class EngineersController extends Controller
         $this->erbPay = $erbPay;
     }
 
+    public function verifyLicense($license_no) {
+        $sql = "SELECT DISTINCT * FROM elicence WHERE licenceID =".$license_no."";
+        $results = DB::select( $sql );
+
+        if( sizeof( $results  ) > 0 ){
+            return response()->json( [
+                "success" => true,
+                $result
+            ] );
+        }
+        else {
+            return response()->json( [
+                "success" => true,
+                "message" => "Engineer with the supplied License No. was not found."
+            ] ); 
+        }
+    }
+
     public function getAllUsers() {
         $sql = "SELECT DISTINCT id, first_name, surname, other_names, name, user_type, email, gender, country, registered, licence_no FROM elicence_user";
         $results = DB::select( $sql );
@@ -56,7 +74,7 @@ class EngineersController extends Controller
         $this->erbPay->pay( [
             "phone_no" => $phone_number,
             "source_system" => $source,
-            "amount" => $amount,
+            "amount" => 500,
             "narrative" => $narrative,
             "sent_from" => $person
         ] );
