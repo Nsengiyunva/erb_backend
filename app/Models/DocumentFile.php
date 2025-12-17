@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class DocumentFile extends Model
 {
-    protected $table = 'nec_documents';
+    protected $table = 'documents';
 }
