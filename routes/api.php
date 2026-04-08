@@ -22,59 +22,59 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function ($router) {
   // NEC
 
-  Route::get('/', 'RequestController@test');
-    Route::post( '/getMaxMemoId', 'RequestController@getAllMemoIds' );
-    Route::post( 'login', 'AuthController@login');
-    Route::post( 'addUser', 'AuthController@register');
+  // Route::get('/', 'RequestController@test');
+  //   Route::post( '/getMaxMemoId', 'RequestController@getAllMemoIds' );
+  //   Route::post( 'login', 'AuthController@login');
+  //   Route::post( 'addUser', 'AuthController@register');
     
 
-    Route::get( 'getNewStaff', 'RequestController@getNewStaff' );
-    Route::post( 'updateUser', 'RequestController@updateUser' );
-    Route::post( 'storeISO', 'DocumentFileController@storeISO' );
-    Route::post( 'getISODocument', 'DocumentFileController@downloadISO');
-    Route::get( 'isoAll', 'DocumentFileController@ISOAll');
-    Route::post( 'storeMemo', 'DocumentFileController@storeMemo' );
-    Route::get( 'memoAll', 'DocumentFileController@memoAll' );
-    Route::post( 'approve-memo', 'DocumentFileController@approveMemo');
-    Route::post( 'shareMemo', 'DocumentFileController@shareMemo');
-    Route::get( 'file/country_list', 'FileController@countryList' );
-    Route::get( 'getStaffFiles/{id}', 'DocumentFileController@getStaffFiles' );
-    Route::get( 'getAllUsers', 'RequestController@getAllUsers' );
-    Route::post( 'loginUser', 'RequestController@loginUser' );
-    Route::post( 'logout', 'AuthController@logout');
-    Route::post( 'updatePassword', 'RequestController@updatePassword');
-    Route::post( 'refresh', 'AuthController@refresh');
-    Route::post( 'deleteFile', 'RequestController@deleteStaffFile' );
+  //   Route::get( 'getNewStaff', 'RequestController@getNewStaff' );
+  //   Route::post( 'updateUser', 'RequestController@updateUser' );
+  //   Route::post( 'storeISO', 'DocumentFileController@storeISO' );
+  //   Route::post( 'getISODocument', 'DocumentFileController@downloadISO');
+  //   Route::get( 'isoAll', 'DocumentFileController@ISOAll');
+  //   Route::post( 'storeMemo', 'DocumentFileController@storeMemo' );
+  //   Route::get( 'memoAll', 'DocumentFileController@memoAll' );
+  //   Route::post( 'approve-memo', 'DocumentFileController@approveMemo');
+  //   Route::post( 'shareMemo', 'DocumentFileController@shareMemo');
+  //   Route::get( 'file/country_list', 'FileController@countryList' );
+  //   Route::get( 'getStaffFiles/{id}', 'DocumentFileController@getStaffFiles' );
+  //   Route::get( 'getAllUsers', 'RequestController@getAllUsers' );
+  //   Route::post( 'loginUser', 'RequestController@loginUser' );
+  //   Route::post( 'logout', 'AuthController@logout');
+  //   Route::post( 'updatePassword', 'RequestController@updatePassword');
+  //   Route::post( 'refresh', 'AuthController@refresh');
+  //   Route::post( 'deleteFile', 'RequestController@deleteStaffFile' );
 
-    Route::post( 'submitRequisition', 'RequestController@store');
-    Route::post('updateRequisition', 'RequestController@updateRequisition');
-    Route::post( 'getAll', 'RequestController@getAll');
-    Route::post('addDocuments', 'DocumentFileController@store');
-    Route::post('updateRequest', 'RequestController@updateItem');
-    Route::post('updateCashierVoucher', 'RequestController@updateCashierVoucher');
-    Route::post('getPaymentVoucher', 'RequestController@getPaymentVoucher');
+  //   Route::post( 'submitRequisition', 'RequestController@store');
+  //   Route::post('updateRequisition', 'RequestController@updateRequisition');
+  //   Route::post( 'getAll', 'RequestController@getAll');
+  //   Route::post('addDocuments', 'DocumentFileController@store');
+  //   Route::post('updateRequest', 'RequestController@updateItem');
+  //   Route::post('updateCashierVoucher', 'RequestController@updateCashierVoucher');
+  //   Route::post('getPaymentVoucher', 'RequestController@getPaymentVoucher');
 
-    Route::post('saveItems', 'RequestController@saveItems');
-    Route::post( 'getProcurementItems', 'RequestController@getProcurementItems' );
-    Route::post( 'getRole', 'RequestController@getRole' );
-    Route::get( 'getApproved', 'RequestController@approved' );
+  //   Route::post('saveItems', 'RequestController@saveItems');
+  //   Route::post( 'getProcurementItems', 'RequestController@getProcurementItems' );
+  //   Route::post( 'getRole', 'RequestController@getRole' );
+  //   Route::get( 'getApproved', 'RequestController@approved' );
 
-    Route::post( 'submitLeaveApplication', 'LeaveApplicationController@store');
-    Route::get( 'getAllApplications', 'LeaveApplicationController@getAll');
-    Route::post('updateLeave', 'LeaveApplicationController@updateLeave');
+  //   Route::post( 'submitLeaveApplication', 'LeaveApplicationController@store');
+  //   Route::get( 'getAllApplications', 'LeaveApplicationController@getAll');
+  //   Route::post('updateLeave', 'LeaveApplicationController@updateLeave');
 
-    Route::post( 'updateRecord', 'LeaveApplicationController@updateRecord');
-    Route::post( 'fetchUserFiles', 'DocumentFileController@fetchUserFiles' );
+  //   Route::post( 'updateRecord', 'LeaveApplicationController@updateRecord');
+  //   Route::post( 'fetchUserFiles', 'DocumentFileController@fetchUserFiles' );
 
-    Route::post( 'add_payroll', 'DocumentFileController@add_payroll' );
-    Route::get( 'get_all_payrolls', 'DocumentFileController@get_all_payrolls' );
-    Route::post( 'update_payroll', 'DocumentFileController@updateRecord');
-    Route::post( 'updateProcurementRequest', 'DocumentFileController@updateProcurementRequest');
+  //   Route::post( 'add_payroll', 'DocumentFileController@add_payroll' );
+  //   Route::get( 'get_all_payrolls', 'DocumentFileController@get_all_payrolls' );
+  //   Route::post( 'update_payroll', 'DocumentFileController@updateRecord');
+  //   Route::post( 'updateProcurementRequest', 'DocumentFileController@updateProcurementRequest');
 
-    Route::post( 'add_remark', 'RequestController@add_remark' );
-    Route::post('getUserRemarks', 'RequestController@getRemarks');
-    Route::post('getOfficerRemarks', 'RequestController@getOfficerRemarks');
-    Route::post('getUserByEmail', 'RequestController@getUserByEmail');
+  //   Route::post( 'add_remark', 'RequestController@add_remark' );
+  //   Route::post('getUserRemarks', 'RequestController@getRemarks');
+  //   Route::post('getOfficerRemarks', 'RequestController@getOfficerRemarks');
+  //   Route::post('getUserByEmail', 'RequestController@getUserByEmail');
 
     // NEC
   
@@ -84,7 +84,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   Route::post( "register-user", [EngineersController::class, 'storeUser'] );
 
   Route::get( "getAllUsers", [EngineersController::class, 'getAllUsers'] );
-  Route::post( "erb_storeLicence", [EngineersController::class, 'storeLicence'] );
+  Route::post( "erb_pay", [EngineersController::class, 'preparePayment'] );
   Route::get(  "erb_getLicences", [EngineersController::class, 'getLicences'] );
   Route::get( "erb_account-licenses/{user_id}", [EngineersController::class, 'fetchAccountLicenses']  );
   Route::get(  "erb_getLicenceById/{id}", [EngineersController::class, 'getLicenceById'] );
