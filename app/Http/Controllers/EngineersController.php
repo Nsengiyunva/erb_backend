@@ -71,14 +71,14 @@ class EngineersController extends Controller
         string $person = "ERB",
         float $amount
     ) {
-        // 1️⃣ Create a new payment record
+        
         $payment = new Payment();
         $payment->mode = "MOBILE";
         $payment->phone_no = $phone_number;
         $payment->elicense_id = $application_id;
         $payment->created_by = $applicant_id;
 
-        // 2️⃣ Perform the external payment
+        
         // Ensure $this->erbPay->pay() never receives null
         $this->erbPay->setPayment($payment);
         $this->erbPay->pay([
