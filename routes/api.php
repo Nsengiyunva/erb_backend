@@ -28,7 +28,7 @@ Route::group([ 'middleware' => [ 'api', 'cors' ],'prefix' => 'auth' ], function 
   
   Route::post( "erb_loginUser", [EngineersController::class, 'loginUser'] );
   Route::post( "erb_storeUser", [EngineersController::class, 'storeUser'] );
-  Route::post( "erb_storeLicence", [EngineersController::class, 'storeLicence'] );
+  Route::post( "makePayment", [EngineersController::class, 'makePayment'] );
   Route::get(  "erb_getLicences", [EngineersController::class, 'getLicences'] );
   Route::get(  "erb_getLicenceById/{id}", [EngineersController::class, 'getLicenceById'] );
   Route::get(  "erb_getRemarks/{licenceId}", [EngineersController::class, 'getLicenceRemarks'] );

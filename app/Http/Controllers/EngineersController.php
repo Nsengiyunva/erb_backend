@@ -27,7 +27,7 @@ class EngineersController extends Controller
     {
         $this->erbPay = $erbPay;
     }
-    public function storeLicence(Request $request)
+    public function makePayment(Request $request)
     {
 
         $request->validate( [
@@ -35,134 +35,12 @@ class EngineersController extends Controller
             "payment_phone_no" => "required",
             "payment_source_system" => "required"
         ] );
-
-        $elicence = new ELicence;
-        $education = new ELicenceEducation;
-
-        $elicence->type = $request->type;
-        $elicence->profession = $request->profession;
-        $elicence->category = $request->category;
-
-        $elicence->firstname = $request->firstname;
-        $elicence->surname = $request->surname;
-        $elicence->other_names = $request->other_names;
-        $elicence->address = $request->address;
-        $elicence->dob = $request->birth_date;
-        $elicence->nationality = $request->nationality;
-        $elicence->pob = $request->pob;
-        $elicence->nin = $request->nin;
-        $elicence->telephone = $request->telephone;
-        $elicence->applicant_id = $request->applicant_id;
-
-        $elicence->status = $request->status;
-        $elicence->progress = $request->progress;
-        $elicence->tracking_no = $request->tracking_no;
-        $elicence->stage = $request->stage;
-        $elicence->applicant_id = $request->applicant_id;
-
-        $elicence->name = $request->name;
-        $elicence->email_address = $request->email_address;
-        $elicence->birth_place = $request->birth_place;
-        $elicence->application_type = $request->application_type;
-        $elicence->user_picture = $request->user_picture;
-
-        $elicence->created_at = now();
-        $elicence->updated_at = now();
-
-        $elicence->save();
-
-        foreach ($request->education as $child) {
-            $sql = DB::table('elicence_education')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'qualification' => $child['qualification'],
-                    'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-
-        foreach ($request->sponsors as $child) {
-            $sql = DB::table('elicence_sponsors')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'sponsor_name' => $child['sponsor_name'],
-                    'registered' => $child['registered'],
-                    'registration_number' => $child['registration_number'],
-                    'discipline' => $child['discipline'],
-                    'progress' => $child['progress'],
-                    'email_address' => $child['email_address'],
-                    'picture' => $child['picture'],
-                    'user_id' => $child['user_id'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-
-
-        foreach ($request->membership as $child) {
-            $sql = DB::table('elicence_membership')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'membership_name' => $child['membership_name'],
-                    'attach_file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-
-        foreach ($request->engineering as $child) {
-            $sql = DB::table('elicence_engineering')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'institution' => $child['institution'],
-                    'file' => $child['attach_file'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-
-        foreach ($request->positions as $child) {
-            $sql = DB::table('elicence_positions')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-
-
-        foreach ($request->practicals as $child) {
-            $sql = DB::table('elicence_practicals')->insert(
-                [
-                    'parentID' => $elicence->id,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-
+        
+        //payment
         $payment = new Payment;
         $payment->mode = "MOBILE";
-        $this->erbPay->setPayment($payment);
         $payment->phone_no = $request->input("payment_phone_no");
+        $this->erbPay->setPayment($payment);
 
         //0701234110
         #$this->erbPay->pay( [
@@ -179,7 +57,7 @@ class EngineersController extends Controller
 
         return response()->json([
             "success" => true,
-            "id" => $elicence->id,
+            "id" => 145345,
             "message" => "Licence Application has been created successfully."
         ]);
     }
