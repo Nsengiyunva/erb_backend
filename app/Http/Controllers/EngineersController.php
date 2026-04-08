@@ -597,7 +597,7 @@ class EngineersController extends Controller
          $payment_id = $this->makePayment( 
             $request->applicationID, 
             $request->applicant_id, 
-            "256773917523", 
+            $request->payment_phone_no, 
             $request->payment_source_system, 
             "PAYMENT OF ERB APPLICATION FEES",
             $request->firstname,
