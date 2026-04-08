@@ -68,7 +68,9 @@ class ErbPay
         $response = Http::withHeaders($headers)->post($this->baseURL . "/flexi/payments/", $data);
         Log::info($response->body());
         $info = $response->json();
-        Log::info($info);
+        if(!$info){
+            throw Exception($response->body());
+        }
         $validator = Validator::make($info, [
             "status" => [
                 "required",
