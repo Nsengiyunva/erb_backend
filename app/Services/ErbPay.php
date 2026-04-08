@@ -32,10 +32,9 @@ class ErbPay
      */
     private function generateAccessToken()
     {
-        // Encode the consumer key and consumer secret in base64
         $encCreds = base64_encode($this->username . ':' . $this->password);
 
-        // Send the request to obtain the access token
+        
         $response = Http::withHeaders([
             'Authorization' => 'Basic ' . $encCreds,
         ])->post($this->baseURL . '/flexi/token/');
@@ -55,9 +54,7 @@ class ErbPay
     public function setPayment(Payment $payment){
         $this->payment = $payment;
     }
-    /**
-     * @return Payment
-     */
+    
     public function pay(array $data)
     {
         $paymentCallbackUrl = "/api/payments/callback";
@@ -69,6 +66,7 @@ class ErbPay
         ];
 
         $response = Http::withHeaders($headers)->post($this->baseURL . "/flexi/payments/", $data);
+        Log::info($response->body());
         $info = $response->json();
         Log::info($info);
         $validator = Validator::make($info, [
