@@ -1,5 +1,7 @@
 <?php
 
+//refactors
+
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
@@ -33,7 +35,6 @@ class EngineersController extends Controller
     {
         $this->erbPay = $erbPay;
     }
-
     public function verifyLicense($license_no) {
         $sql = "SELECT DISTINCT * FROM elicence WHERE licenceID =".$license_no."";
         $results = DB::select( $sql );
@@ -48,7 +49,7 @@ class EngineersController extends Controller
             return response()->json( [
                 "success" => true,
                 "message" => "Engineer with the supplied License No. was not found."
-            ] ); 
+            ] );
         }
     }
 
@@ -62,6 +63,7 @@ class EngineersController extends Controller
         ] );
     }
 
+
     public function makePayment(
         int $application_id,
         int $applicant_id,
@@ -71,14 +73,14 @@ class EngineersController extends Controller
         string $person = "ERB",
         float $amount
     ) {
-        
+
         $payment = new Payment();
         $payment->mode = "MOBILE";
         $payment->phone_no = $phone_number;
         $payment->elicense_id = $application_id;
         $payment->created_by = $applicant_id;
 
-        
+
         // Ensure $this->erbPay->pay() never receives null
         $this->erbPay->setPayment($payment);
         $this->erbPay->pay([
@@ -194,7 +196,7 @@ class EngineersController extends Controller
             }
         }
 
-        
+
         if( !is_null( $request->sponsors ) ) {
             foreach ($request->sponsors as $child) {
                 $sql = DB::table('elicence_sponsors')->insert(
@@ -215,7 +217,6 @@ class EngineersController extends Controller
             }
         }
 
-        
         if( !is_null( $request->membership )  ) {
             foreach ($request->membership as $child) {
                 $sql = DB::table('elicence_membership')->insert(
@@ -263,7 +264,6 @@ class EngineersController extends Controller
                 );
             }
         }
-
 
         if( !is_null( $request->practicals ) ) {
             foreach ($request->practicals as $child) {
@@ -323,137 +323,139 @@ class EngineersController extends Controller
             ]);
 
 
-        //other tables
-        if( !is_null( $request->education ) ) {
-            DB::delete('DELETE FROM elicence_education WHERE parentID = ?', [ $request->applicationID ]);
+ //other tables
+ if( !is_null( $request->education ) ) {
+    DB::delete('DELETE FROM elicence_education WHERE parentID = ?', [ $request->applicationID ]);
 
-            foreach ($request->education as $child) {
-            $sql = DB::table('elicence_education')->insert(
-                [
-                    'parentID' => $request->applicationID,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'qualification' => $child['qualification'],
-                    'institution' => $child['institution'],
-                    'summary' => $child['summary'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-            }
-        }
-
-        if( !is_null( $request->sponsors ) ) {
-            DB::delete('DELETE FROM elicence_sponsors WHERE parentID = ?', [ $request->applicationID ]);
-
-            foreach ($request->sponsors as $child) {
-            $sql = DB::table('elicence_sponsors')->insert(
-                [
-                    'parentID' => $request->applicationID,
-                    'sponsor_name' => $child['sponsor_name'],
-                    'registered' => $child['registered'],
-                    'registration_number' => $child['registration_number'],
-                    'discipline' => $child['discipline'],
-                    'progress' => $child['progress'],
-                    'status' => $child['status'],
-                    'email_address' => $child['email_address'],
-                    'user_id' => $child['user_id'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-            }
-        }
-
-        if( !is_null( $request->membership ) ) {
-            DB::delete('DELETE FROM elicence_membership WHERE parentID = ?', [ $request->applicationID ]);
-
-            foreach ($request->membership as $child) {
-                $sql = DB::table('elicence_membership')->insert(
-                    [
-                        'parentID' => $request->applicationID,
-                        'membership_name' => $child['membership_name'],
-                        'summary' => $child['summary'],
-                        'created_at' => now(),
-                        'updated_at' =>  now(),
-                    ]
-                );
-            }
-        }
-
-
-        if( !is_null( $request->engineering ) ) {
-            DB::delete('DELETE FROM elicence_engineering WHERE parentID = ?', [ $request->applicationID ]);
-
-            foreach ($request->engineering as $child) {
-                $sql = DB::table('elicence_engineering')->insert(
-                    [
-                        'parentID' => $request->applicationID,
-                        'start_date' => $child['start_date'],
-                        'end_date' => $child['end_date'],
-                        'institution' => $child['institution'],
-                        'summary' => $child['summary'],
-                        'created_at' => now(),
-                        'updated_at' =>  now(),
-                    ]
-                );
-            }
-        }
-
-        if( !is_null( $request->positions ) ) {
-            DB::delete('DELETE FROM elicence_positions WHERE parentID = ?', [ $request->applicationID ]);
-
-            foreach ($request->positions as $child) {
-            $sql = DB::table('elicence_positions')->insert(
-                [
-                    'parentID' => $request->applicationID,
-                    'start_date' => $child['start_date'],
-                    'end_date' => $child['end_date'],
-                    'organisation' => $child['organisation'],
-                    'cadre' => $child['cadre'],
-                    'summary' => $child['summary'],
-                    'created_at' => now(),
-                    'updated_at' =>  now(),
-                ]
-            );
-        }
-        }
-
-        if( !is_null( $request->practicals ) ) {
-            DB::delete('DELETE FROM elicence_practicals WHERE parentID = ?', [ $request->applicationID ]);
-            
-            foreach ($request->practicals as $child) {
-                $sql = DB::table('elicence_practicals')->insert(
-                    [
-                        'parentID' => $request->applicationID,
-                        'start_date' => $child['start_date'],
-                        'end_date' => $child['end_date'],
-                        'organisation' => $child['organisation'],
-                        'cadre' => $child['cadre'],
-                        'summary' => $child['summary'],
-                        'created_at' => now(),
-                        'updated_at' =>  now(),
-                    ]
-                );
-            }
-        }
-        
-        if ($updated) {
-            $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
-
-            return response()->json([
-                'message' => 'License updated successfully',
-                'licence' => $licence,
-            ]);
-        } 
-        else {
-            return response()->json([
-                'message' => 'License not found or no changes made',
-            ], 404);
-        }
+    foreach ($request->education as $child) {
+    $sql = DB::table('elicence_education')->insert(
+        [
+            'parentID' => $request->applicationID,
+            'start_date' => $child['start_date'],
+            'end_date' => $child['end_date'],
+            'qualification' => $child['qualification'],
+            'institution' => $child['institution'],
+            'summary' => $child['summary'],
+            'created_at' => now(),
+            'updated_at' =>  now(),
+        ]
+    );
     }
+}
 
-    public function preparePayment(Request $request)
+if( !is_null( $request->sponsors ) ) {
+    DB::delete('DELETE FROM elicence_sponsors WHERE parentID = ?', [ $request->applicationID ]);
+
+    foreach ($request->sponsors as $child) {
+    $sql = DB::table('elicence_sponsors')->insert(
+        [
+            'parentID' => $request->applicationID,
+            'sponsor_name' => $child['sponsor_name'],
+            'registered' => $child['registered'],
+            'registration_number' => $child['registration_number'],
+            'discipline' => $child['discipline'],
+            'progress' => $child['progress'],
+            'status' => $child['status'],
+            'email_address' => $child['email_address'],
+            'user_id' => $child['user_id'],
+            'created_at' => now(),
+            'updated_at' =>  now(),
+        ]
+    );
+    }
+}
+
+if( !is_null( $request->membership ) ) {
+    DB::delete('DELETE FROM elicence_membership WHERE parentID = ?', [ $request->applicationID ]);
+
+    foreach ($request->membership as $child) {
+        $sql = DB::table('elicence_membership')->insert(
+            [
+                'parentID' => $request->applicationID,
+                'membership_name' => $child['membership_name'],
+                'summary' => $child['summary'],
+                'created_at' => now(),
+                'updated_at' =>  now(),
+            ]
+        );
+    }
+}
+
+
+if( !is_null( $request->engineering ) ) {
+    DB::delete('DELETE FROM elicence_engineering WHERE parentID = ?', [ $request->applicationID ]);
+
+    foreach ($request->engineering as $child) {
+        $sql = DB::table('elicence_engineering')->insert(
+            [
+                'parentID' => $request->applicationID,
+                'start_date' => $child['start_date'],
+                'end_date' => $child['end_date'],
+                'institution' => $child['institution'],
+                'summary' => $child['summary'],
+                'created_at' => now(),
+                'updated_at' =>  now(),
+            ]
+        );
+    }
+}
+
+if( !is_null( $request->positions ) ) {
+    DB::delete('DELETE FROM elicence_positions WHERE parentID = ?', [ $request->applicationID ]);
+
+    foreach ($request->positions as $child) {
+    $sql = DB::table('elicence_positions')->insert(
+        [
+            'parentID' => $request->applicationID,
+            'start_date' => $child['start_date'],
+            'end_date' => $child['end_date'],
+            'organisation' => $child['organisation'],
+            'cadre' => $child['cadre'],
+            'summary' => $child['summary'],
+            'created_at' => now(),
+            'updated_at' =>  now(),
+        ]
+    );
+}
+}
+
+if( !is_null( $request->practicals ) ) {
+    DB::delete('DELETE FROM elicence_practicals WHERE parentID = ?', [ $request->applicationID ]);
+
+    foreach ($request->practicals as $child) {
+        $sql = DB::table('elicence_practicals')->insert(
+            [
+                'parentID' => $request->applicationID,
+                'start_date' => $child['start_date'],
+                'end_date' => $child['end_date'],
+                'organisation' => $child['organisation'],
+                'cadre' => $child['cadre'],
+                'summary' => $child['summary'],
+                'created_at' => now(),
+                'updated_at' =>  now(),
+            ]
+        );
+    }
+}
+
+
+if ($updated) {
+    $licence = DB::table('elicence')->where('id', $request->applicationID )->first();
+
+    return response()->json([
+        'message' => 'License updated successfully',
+        'licence' => $licence,
+    ]);
+}
+else {
+    return response()->json([
+        'message' => 'License not found or no changes made',
+    ], 404);
+}
+}
+
+
+public function preparePayment(Request $request)
     {
         // 1️⃣ Validate input
         $validator = Validator::make($request->all(), [
@@ -527,7 +529,7 @@ class EngineersController extends Controller
         $elicence = ELicence::where("id", $request->id)->first();
 
         $elicence->account_status = $request->account_status;
-        
+
         $elicence->save();
 
         return response()->json([
@@ -535,6 +537,7 @@ class EngineersController extends Controller
             "message" => "Payment Status has been updated successfully."
         ]);
     }
+
 
     public function updateLicence(Request $request){
         $elicence = ELicence::where("id", $request->id)->first();
@@ -590,7 +593,7 @@ class EngineersController extends Controller
 
     public function fetchAccountLicenses( $user_id ) {
         $applications = ELicence::where('applicant_id', $user_id )->where('draft_type', 'COMPLETE')->get();
-        
+
         return response()->json( [
             "success" => true,
             "records" => $applications
@@ -621,6 +624,7 @@ class EngineersController extends Controller
         ]);
     }
 
+
     public function getSponsorsByUser(){
         $sponsors = ELicenceSponsor::all();
         return response()->json([
@@ -648,7 +652,7 @@ class EngineersController extends Controller
         if ($request->comment) {
             $sponsor->comment = $request->comment;
         }
-        
+
         $sponsor->save();
         $application->save();
 
@@ -657,7 +661,6 @@ class EngineersController extends Controller
             "message" => "Sponsor has been updated successfully."
         ]);
     }
-
 
     public function fetchEngineers( Request $request ) {
         $sql = "SELECT DISTINCT id, name, email, telephone, licence_no, category, registered, gender, created_at FROM elicence_user";
@@ -671,7 +674,7 @@ class EngineersController extends Controller
 
     public function storeUser(Request $request){
         $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%'";
-        $record = DB::select( $sql );   
+        $record = DB::select( $sql );
 
         if( !empty( $record )  ) {
             return response()->json( [
@@ -723,7 +726,7 @@ class EngineersController extends Controller
     {
         $sql = "SELECT DISTINCT * FROM elicence_user WHERE email LIKE '%".$request->email."%' AND STATUS = 'APPROVED'";
         $record = DB::select($sql);
-        
+
         return response()->json( [
             "success" => true,
             "record" => $record
@@ -745,3 +748,13 @@ class EngineersController extends Controller
         ] );
     }
 }
+
+
+
+
+
+
+
+
+
+
