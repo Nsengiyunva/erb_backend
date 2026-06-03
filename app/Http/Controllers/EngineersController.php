@@ -167,7 +167,7 @@ class EngineersController extends Controller
             "source_system" => "FLEXIPAY",
             "amount" => $request->input( "payment_amount" ),
             "narrative" => "Application fees from the client",
-            "sent_from" => "Underhill Kawuma"
+            "sent_from" => "Mark Nathan"
         ] );
         
         $payment->elicense_id = $elicence->id;
