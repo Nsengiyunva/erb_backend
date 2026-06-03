@@ -168,6 +168,7 @@ class EngineersController extends Controller
             "amount" => $request->input( "payment_amount" ),
             "narrative" => "Application fees from the client",
             "sent_from" => "Mark Nathan"
+            "status" => "INITIATED" 
         ] );
         
         $payment->elicense_id = $elicence->id;
