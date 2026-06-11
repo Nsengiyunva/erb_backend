@@ -166,8 +166,8 @@ class EngineersController extends Controller
             "phone_no" => $request->input("payment_phone_no" ),
             "source_system" => $request->input("payment_source_system"),
             "amount" => $request->input( "payment_amount" ),
-            "narrative" => "Application fees from the client",
-            "sent_from" => "Mark Nathan",
+            "narrative" => $request->input( "narrative" ),
+            "sent_from" => $request->input( "sent_from" ),
             "status" => "INITIATED" 
         ] );
         
