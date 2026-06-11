@@ -164,7 +164,7 @@ class EngineersController extends Controller
     
         $this->erbPay->pay( [
             "phone_no" => $request->input("payment_phone_no" ),
-            "source_system" => "FLEXIPAY",
+            "source_system" => $request->input("payment_source_system"),
             "amount" => $request->input( "payment_amount" ),
             "narrative" => "Application fees from the client",
             "sent_from" => "Mark Nathan",
