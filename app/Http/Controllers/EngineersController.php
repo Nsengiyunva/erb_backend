@@ -162,22 +162,32 @@ class EngineersController extends Controller
         $payment->phone_no = $request->input("payment_phone_no");
 
     
-        $this->erbPay->pay( [
-            "phone_no" => $request->input("payment_phone_no" ),
+        // $this->erbPay->pay( [
+        //     "phone_no" => $request->input("payment_phone_no" ),
+        //     "source_system" => $request->input("payment_source_system"),
+        //     "amount" => $request->input( "payment_amount" ),
+        //     "narrative" => $request->input( "narrative" ),
+        //     "sent_from" => $request->input( "sent_from" ),
+        //     "status" => "INITIATED" 
+        // ] );
+        $reference = $this->erbPay->pay([
+            "phone_no"      => $request->input("payment_phone_no"),
             "source_system" => $request->input("payment_source_system"),
-            "amount" => $request->input( "payment_amount" ),
-            "narrative" => $request->input( "narrative" ),
-            "sent_from" => $request->input( "sent_from" ),
-            "status" => "INITIATED" 
-        ] );
+            "amount"        => $request->input("payment_amount"),
+            "narrative"     => $request->input("narrative"),
+            "sent_from"     => $request->input("sent_from"),
+            "status"        => "INITIATED",
+        ]);
         
         $payment->elicense_id = $elicence->id;
         $payment->created_by = $request->applicant_id;
+        
         $payment->save();
 
         return response()->json([
             "success" => true,
             "id" => $elicence->id,
+            "payment_ref" => $reference,
             "message" => "Licence Application has been added successfully."
         ]);
     }

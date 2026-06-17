@@ -110,6 +110,8 @@ class ErbPay
         $this->payment->reference = $info["reference"];
         $this->payment->status    = config("payments.STATES.PENDING");
         $this->payment->amount    = $data["amount"];
+
+        return $info["reference"]; 
     }
 
 }
